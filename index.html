@@ -7,9 +7,36 @@
     <title></title>
 </head>
 <body>
-    
-
-
+    <header>
+        <div class="wraper">
+            <div class="left">
+                <a href="index.html"><img src="resources/Images/logos.svg" alt="logo"></a>
+                <nav>
+                    <a href="index.html" data-language="navHome" class="active"></a>
+                    <a href="pages/rooms.html" data-language="navRooms"></a>
+                    <a href="pages/hotels.html" data-language="navHotels"></a>
+                    <a href="pages/bookedRooms.html" data-language="navBookedRooms"></a>
+                </nav>
+            </div>
+            <div class="right">
+                <button id="themeChangeBtn"></button>
+                <select name="language" id="lang">
+                    <option value="en">English</option>
+                    <option value="ka">ქართული</option>
+                    <option value="ru">Русский</option>
+                    <option value="sp">Español</option>
+                </select>
+                <div class="burgerMenu"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18L20 18" stroke="" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L20 12" stroke="" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="" stroke-width="2" stroke-linecap="round"></path> </g></svg></div>
+            </div>
+        </div>
+        <nav class="burgerNav">
+            <a href="index.html" data-language="navHome" class="active"></a>
+            <a href="pages/rooms.html" data-language="navRooms"></a>
+            <a href="pages/hotels.html" data-language="navHotels"></a>
+            <a href="pages/bookedRooms.html" data-language="navBookedRooms"></a>
+        </nav>
+    </header>
+    <script src="js/languages.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,3 +1,130 @@
 header {
-    
+    @include size(100%, auto);
+    @include flex(center);
+    flex-direction: column;
+    background-color: var(--bg);
+    position: sticky;
+    top: 0;
+    .wraper {
+        position: relative;
+        @include size(1140px, 84px);
+        @include flex(space-between);
+        .left {
+            @include size(auto, 100%);
+            @include flex(center);
+            gap: 60px;
+            img {
+                @include size(38.5px, 44px);
+            }
+            nav {
+                @include size(auto, 100%);
+                @include flex(center);
+                gap: 40px;
+                padding: 0 0 0 40px;
+                border-left: 1px solid var(--borders);
+                a {
+                    @include text(var(--text), 16px, 700);
+                    transition: 0.3s ease;
+                    &:hover {
+                        color: var(--accent);
+                    }
+                }
+                .active {
+                    color: var(--accent);
+                }
+            }
+        }
+        .right {
+            @include flex(center);
+            gap: 20px;
+            button {
+                @include size(28px, 28px);
+                border: 1px solid var(--accent);
+                border-radius: 50%;
+                background-color: var(--bg);
+                cursor: pointer;
+            }
+            select {
+                cursor: pointer;
+                outline: none;
+                border-radius: 4px;
+                background-color: var(--bg);
+                @include text(var(--text), 14px, 500);
+            }
+            .burgerMenu{
+                display: none;
+                svg {
+                    @include size(44px, 34px);
+                    stroke: var(--borders);
+                    border: 1px solid var(--borders);
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .burgerNav {
+        @include size(100%, auto);
+        @include flex(center);
+        align-items: flex-start;
+        background-color: var(--bg);
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+        a {
+            border-top: 1px solid var(--borders);
+            width: 100%;
+            padding: 20px 0 20px 20px ;
+            @include text(var(--text), 16px, 700);
+            transition: 0.3s ease;
+            &:hover {
+                color: var(--accent);
+            }
+        }
+        .active {
+            color: var(--accent);
+        }
+        &.toggle{
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+ @media screen and (min-width: 901px) {
+    .burgerNav {
+        display: none;
+    }
+}
+@media screen and (min-width: 901px) and (max-width: 1200px){
+    header {
+        .wraper {
+            @include size(90%, 84px);
+            
+        }
+    }
+
+}
+@media screen and (min-width: 301px) and (max-width: 900px){
+    header {
+        position: relative;
+        .wraper {
+            @include size(90%, 84px);
+            .left {
+                nav {
+                    display: none;
+                }
+            }
+            .right {
+                .burgerMenu {
+                    display: inline;
+                }
+            }
+        }
+    }
 }

@@ -9,5 +9,7 @@
 @import "./components/header";
 @import "./components/footer";
 body {
-    
+    @include size(100%, auto);
+    @include flex(center);
+    flex-direction: column;
 }

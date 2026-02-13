@@ -3,9 +3,9 @@
     align-items: center;
     justify-content: $justify;
 }
-@mixin text($c, $f, $s, $w){
+@mixin text($c, $s, $w){
     color: $c;
-    font-family: $f;
+    font-family: "sans";
     font-size: $s;
     font-weight: $w;
     text-decoration: none;
