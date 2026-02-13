@@ -180,6 +180,42 @@ header .burgerNav.toggle {
     display: inline;
   }
 }
+footer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #272727;
+}
+footer .wraper {
+  width: 1140px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+footer .wraper p {
+  color: #c1c1c1;
+  font-family: "sans";
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  footer .wraper {
+    width: 90%;
+    height: 74px;
+  }
+}
+@media screen and (min-width: 301px) and (max-width: 900px) {
+  footer .wraper {
+    width: 90%;
+    height: 74px;
+    justify-content: center;
+  }
+}
 body {
   width: 100%;
   height: auto;
