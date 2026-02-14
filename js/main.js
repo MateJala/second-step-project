@@ -65,6 +65,30 @@ if(hotels) {
     })
 }
 
+const favoriteRooms = document.querySelector("#favoriteRooms");
+if(favoriteRooms){
+    for(let i = 1; i <= 6; i++){
+        const roomApi = `https://hotelbooking.stepprojects.ge/api/Rooms/GetRoom/${i}`
+        fetch(roomApi)
+            .then(response =>  response.json())
+            .then(room => {
+                favoriteRooms.innerHTML += `<div class="card">
+                                    <img src="${room.images[0].source}" alt="${room.name}">
+                                    <div class="info">
+                                        <p>${room.name}</p>
+                                        <div class="price">
+                                            <h5>€ ${room.pricePerNight}</h5>
+                                            <h6>a night</h6>
+                                        </div>
+                                    </div>
+                                    <button>BOOK NOW</button>
+                                </div>`
+            });
+    }
+}
+
+
+
 const bookedRooms = document.querySelector(".bookedRooms");     
 if(bookedRooms) {
     const bookedRoomsAPI = "https://hotelbooking.stepprojects.ge/api/Booking";
@@ -74,55 +98,54 @@ if(bookedRooms) {
             data.forEach(obj => {
                 const roomsbyIDApi = `https://hotelbooking.stepprojects.ge/api/Rooms/GetRoom/${obj.roomID}`;
                 fetch(roomsbyIDApi)
-                    .then(response =>  response.json())
-                    .then(roomArray => {
-                        const room = roomArray[0];
-                        const hotelbyidAPI = `https://hotelbooking.stepprojects.ge/api/Hotels/GetHotel/${room.hotelId}`;
-                        fetch(hotelbyidAPI)
-                            .then(response => response.json())
-                            .then(hotel => {
-                                const hotelImage = hotel.images[0].source;
-                                const roomImage = room.images[0].source; 
-                                bookedRooms.innerHTML += `<tr>
-                                    <td class="Hotel">
-                                        <img src="${hotelImage}" alt="${hotel.name}">
-                                        <div>
-                                            <h5>${hotel.name}</h5>
-                                            <p>${hotel.city}</p>
-                                        </div>
-                                    </td>
-                                    <td class="Room">
-                                        <img src="${roomImage}" alt="${room.name}">
-                                        <div>
-                                            <h5>${room.name}</h5>
-                                            <h5>$${room.pricePerNight}</h5>
-                                        </div>
-                                    </td>
-                                    <td class="Customer">
-                                        <h5>Name: ${obj.customerName}</h5>
-                                        <p>Phone: ${obj.customerPhone}</p>
-                                    </td>
-                                    <td class="Status">
-                                        <div>${obj.isConfirmed ? "Booked" : "Not Booked"}</div>
-                                    </td>
-                                    <td class="Checkin">
-                                        <h5>${new Date(obj.checkInDate).toLocaleDateString()}</h5>
-                                    </td>
-                                    <td class="Checkout">
-                                        <h5>${new Date(obj.checkOutDate).toLocaleDateString()}</h5>
-                                    </td>
-                                    <td class="TotalPrice">
-                                        <h5>$${obj.totalPrice}</h5>
-                                    </td>
-                                    <td class="Actions">
-                                        <button data-booking-id="${obj.id}">CANCEL BOOKING</button>
-                                    </td>
-                                </tr>`;
-                            });
-                    })
-                    .catch(e => {
-                        bookedRooms.innerHTML += `<tr><td colspan="8">Failed to load booking #${obj.id}</td></tr>`;
+                .then(response =>  response.json())
+                .then(roomArray => {
+                    const hotelbyidAPI = `https://hotelbooking.stepprojects.ge/api/Hotels/GetHotel/${roomArray[0].hotelId}`;
+                    fetch(hotelbyidAPI)
+                    .then(response => response.json())
+                    .then(hotel => {
+                        const hotelImage = hotel.images[0].source;
+                        const roomImage = roomArray[0].images[0].source; 
+                        bookedRooms.innerHTML += `<tr>
+                            <td class="Hotel">
+                                <img src="${hotelImage}" alt="${hotel.name}">
+                                <div>
+                                    <h5>${hotel.name}</h5>
+                                    <p>${hotel.city}</p>
+                                </div>
+                            </td>
+                            <td class="Room">
+                                <img src="${roomImage}" alt="${roomArray[0].name}">
+                                <div>
+                                    <h5>${roomArray[0].name}</h5>
+                                    <h5>$${roomArray[0].pricePerNight}</h5>
+                                </div>
+                            </td>
+                            <td class="Customer">
+                                <h5>Name: ${obj.customerName}</h5>
+                                <p>Phone: ${obj.customerPhone}</p>
+                            </td>
+                            <td class="Status">
+                                <div>${obj.isConfirmed ? "Booked" : "Not Booked"}</div>
+                            </td>
+                            <td class="Checkin">
+                                <h5>${new Date(obj.checkInDate).toLocaleDateString()}</h5>
+                            </td>
+                            <td class="Checkout">
+                                <h5>${new Date(obj.checkOutDate).toLocaleDateString()}</h5>
+                            </td>
+                            <td class="TotalPrice">
+                                <h5>$${obj.totalPrice}</h5>
+                            </td>
+                            <td class="Actions">
+                                <button data-booking-id="${obj.id}">CANCEL BOOKING</button>
+                            </td>
+                        </tr>`;
                     });
+                })
+                .catch(e => {
+                    bookedRooms.innerHTML += `<tr><td colspan="8">Failed to load booking #${obj.id}</td></tr>`;
+                });
             });
         })
         .catch(e => {

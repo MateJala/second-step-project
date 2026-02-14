@@ -76,10 +76,64 @@ body {
         .container {
             @include size(100%, auto);
             @include flex(flex-start);
-            gap: 15px;
-            .card {
-
-            }
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-top: 40px;
+                .card {
+                @include size(356px, 283px);
+                border: 1px solid var(--borders);
+                overflow: hidden;
+                cursor: pointer;
+                img {
+                    @include size(100%, 80.5%);
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
+                    transform: translateY(0);
+                }
+                .info {
+                    @include flex(space-between);
+                    height: 19.5%;
+                    transition: transform 0.3s ease;
+                    transform: translateY(0);
+                    p  {
+                        @include text(var(--text), 12px, 700);
+                        padding: 0 0 0 20px;
+                    }
+                    .price {
+                        height: 100%;
+                        @include flex(center);
+                        flex-direction: column;
+                        gap: 5px;
+                        border-left: 1px solid var(--borders);
+                        padding: 0 20px;
+                        background-color: #5fc9d721;
+                        h5 {
+                            @include text(var(--accent), 18px, 700);
+                        }
+                        h6 {
+                            @include text(var(--text2), 11px, 400);
+                        }
+                    }  
+                }
+                button {
+                    @include size(100%, 44px);
+                    border: 1px solid #3b97a3;
+                    border-radius: 5px;
+                    @include text(var(--bg), 14px, 600);
+                    background-color: var(--accent);
+                    cursor: pointer;
+                    transition: transform 0.3s ease;
+                    transform: translateY(0);
+                }
+                &:hover {
+                    img {
+                        transform: translateY(-100%);
+                    }
+                    .info, button {
+                        transform: translateY(-230px);
+                    }
+                }
+            }   
         }
     }
     .uspSection{
@@ -392,6 +446,20 @@ body {
                 width: 30%;
             }
         }
+        .favoriteRooms .container {
+            justify-content: center;
+            .card {
+                @include size(100%, auto);
+                .info {
+                    height: 55px;
+                }
+                &:hover {
+                    img, .info, button {
+                        transform: none;
+                    }
+                }
+            }
+        }
     }
     #hotelsPage {
         .cities {
@@ -434,6 +502,20 @@ body {
             @include size(90%, auto);
             .title span {
                 width: 30%;
+            }
+        }
+        .favoriteRooms .container {
+            justify-content: center;
+            .card {
+                @include size(100%, auto);
+                .info {
+                    height: 55px;
+                }
+                &:hover {
+                    img, .info, button {
+                        transform: none;
+                    }
+                }
             }
         }
         .uspSection {

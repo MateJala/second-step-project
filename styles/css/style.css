@@ -328,7 +328,85 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 40px;
+}
+#homePage .favoriteRooms .container .card {
+  width: 356px;
+  height: 283px;
+  border: 1px solid var(--borders);
+  overflow: hidden;
+  cursor: pointer;
+}
+#homePage .favoriteRooms .container .card img {
+  width: 100%;
+  height: 80.5%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+}
+#homePage .favoriteRooms .container .card .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 19.5%;
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+}
+#homePage .favoriteRooms .container .card .info p {
+  color: var(--text);
+  font-family: "sans";
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0 0 0 20px;
+}
+#homePage .favoriteRooms .container .card .info .price {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  border-left: 1px solid var(--borders);
+  padding: 0 20px;
+  background-color: rgba(95, 201, 215, 0.1294117647);
+}
+#homePage .favoriteRooms .container .card .info .price h5 {
+  color: var(--accent);
+  font-family: "sans";
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+#homePage .favoriteRooms .container .card .info .price h6 {
+  color: var(--text2);
+  font-family: "sans";
+  font-size: 11px;
+  font-weight: 400;
+  text-decoration: none;
+}
+#homePage .favoriteRooms .container .card button {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #3b97a3;
+  border-radius: 5px;
+  color: var(--bg);
+  font-family: "sans";
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: var(--accent);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+}
+#homePage .favoriteRooms .container .card:hover img {
+  transform: translateY(-100%);
+}
+#homePage .favoriteRooms .container .card:hover .info, #homePage .favoriteRooms .container .card:hover button {
+  transform: translateY(-230px);
 }
 #homePage .uspSection {
   width: 1140px;
@@ -749,6 +827,19 @@ body {
   #homePage .favoriteRooms .title span, #homePage .uspSection .title span {
     width: 30%;
   }
+  #homePage .favoriteRooms .container {
+    justify-content: center;
+  }
+  #homePage .favoriteRooms .container .card {
+    width: 100%;
+    height: auto;
+  }
+  #homePage .favoriteRooms .container .card .info {
+    height: 55px;
+  }
+  #homePage .favoriteRooms .container .card:hover img, #homePage .favoriteRooms .container .card:hover .info, #homePage .favoriteRooms .container .card:hover button {
+    transform: none;
+  }
   #hotelsPage .cities {
     display: none;
   }
@@ -788,6 +879,19 @@ body {
   }
   #homePage .favoriteRooms .title span, #homePage .uspSection .title span {
     width: 30%;
+  }
+  #homePage .favoriteRooms .container {
+    justify-content: center;
+  }
+  #homePage .favoriteRooms .container .card {
+    width: 100%;
+    height: auto;
+  }
+  #homePage .favoriteRooms .container .card .info {
+    height: 55px;
+  }
+  #homePage .favoriteRooms .container .card:hover img, #homePage .favoriteRooms .container .card:hover .info, #homePage .favoriteRooms .container .card:hover button {
+    transform: none;
   }
   #homePage .uspSection .container {
     flex-direction: column;
