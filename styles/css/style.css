@@ -34,6 +34,8 @@ header {
   background-color: var(--bg);
   position: sticky;
   top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--borders);
 }
 header .wraper {
   position: relative;
@@ -186,6 +188,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 60px;
   background-color: #272727;
 }
 footer .wraper {
@@ -223,4 +226,483 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: var(--bg);
+  transition: all 0.3s ease;
+}
+
+#homePage {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+}
+#homePage .first {
+  width: 100%;
+  height: auto;
+}
+#homePage .first img {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+#homePage .first div {
+  position: absolute;
+  top: 12%;
+  right: 14%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: clamp(0.313rem, 0.139rem + 0.926vw, 1.25rem);
+}
+#homePage .first div h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.063rem, 0.016rem + 0.247vw, 0.313rem);
+  color: #fff;
+  font-family: "sans";
+  font-size: clamp(0.688rem, 0.294rem + 2.099vw, 2.813rem);
+  font-weight: 600;
+  text-decoration: none;
+}
+#homePage .first div h3 svg {
+  fill: #fff;
+  width: clamp(0.188rem, -0.009rem + 1.049vw, 1.25rem);
+  height: clamp(0.375rem, 0.155rem + 1.173vw, 1.563rem);
+}
+#homePage .first div h4 {
+  color: #fff;
+  font-family: "sans";
+  font-size: clamp(0.438rem, 0.171rem + 1.42vw, 1.875rem);
+  font-weight: 400;
+  text-decoration: none;
+}
+#homePage .first div button {
+  width: clamp(4.375rem, 3.796rem + 3.086vw, 7.5rem);
+  height: clamp(1.625rem, 1.387rem + 1.272vw, 2.913rem);
+  color: #fff;
+  font-family: "sans";
+  font-size: clamp(0.625rem, 0.579rem + 0.247vw, 0.875rem);
+  font-weight: 700;
+  text-decoration: none;
+  background-color: #e331bf;
+  border: 1px solid #bf159d;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#homePage .first div button:hover {
+  background-color: #ff57dd;
+}
+#homePage .favoriteRooms {
+  width: 1140px;
+  height: auto;
+}
+#homePage .favoriteRooms .title {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#homePage .favoriteRooms .title h2 {
+  color: var(--text);
+  font-family: "sans";
+  font-size: clamp(0.875rem, 0.759rem + 0.617vw, 1.5rem);
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+#homePage .favoriteRooms .title span {
+  width: 410px;
+  height: 2px;
+  background-color: var(--text);
+}
+#homePage .favoriteRooms .container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+#homePage .uspSection {
+  width: 1140px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 60px;
+}
+#homePage .uspSection .title {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#homePage .uspSection .title h2 {
+  color: var(--text);
+  font-family: "sans";
+  font-size: clamp(0.875rem, 0.759rem + 0.617vw, 1.5rem);
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+#homePage .uspSection .title span {
+  width: 410px;
+  height: 2px;
+  background-color: var(--text);
+}
+#homePage .uspSection .container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#homePage .uspSection .container .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-direction: column;
+  width: 23%;
+  height: auto;
+}
+#homePage .uspSection .container .box .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 82px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+#homePage .uspSection .container .box .circle svg {
+  fill: var(--accent);
+  width: 18px;
+  height: 18px;
+}
+#homePage .uspSection .container .box .circle:hover {
+  background-color: var(--accent);
+}
+#homePage .uspSection .container .box .circle:hover svg {
+  fill: var(--bg);
+}
+#homePage .uspSection .container .box h4 {
+  color: var(--text);
+  font-family: "sans";
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+#homePage .uspSection .container .box p {
+  color: var(--text2);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+}
+#homePage .uspSection .container .box a {
+  color: var(--accent);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+#homePage .uspSection .container .box a:hover {
+  color: var(--text);
+}
+
+#hotelsPage {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+}
+#hotelsPage .cities {
+  width: 1140px;
+  height: auto;
+  margin-top: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+#hotelsPage .cities .city {
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+  padding: 10px 15px;
+  color: var(--text);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+#hotelsPage .cities .city:hover {
+  background-color: rgba(143, 143, 143, 0.2039215686);
+  opacity: 0.8;
+}
+#hotelsPage .cities .all {
+  color: #fff;
+  background-color: var(--accent);
+  transition: all 0.3s ease;
+}
+#hotelsPage .cities .all:hover {
+  background-color: var(--accent);
+  opacity: 0.8;
+}
+#hotelsPage .container {
+  margin-bottom: clamp(3.125rem, -1.658rem + 17.007vw, 18.75rem);
+  width: 1140px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#hotelsPage .container .card {
+  width: 356px;
+  height: 283px;
+  border: 1px solid var(--borders);
+  overflow: hidden;
+  cursor: pointer;
+}
+#hotelsPage .container .card img {
+  width: 100%;
+  height: 80.5%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+}
+#hotelsPage .container .card .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 19.5%;
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+}
+#hotelsPage .container .card .info p {
+  color: var(--text);
+  font-family: "sans";
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0 0 0 20px;
+}
+#hotelsPage .container .card .info .price {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  border-left: 1px solid var(--borders);
+  padding: 0 20px;
+  background-color: rgba(95, 201, 215, 0.1294117647);
+}
+#hotelsPage .container .card .info .price h5 {
+  color: var(--accent);
+  font-family: "sans";
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+#hotelsPage .container .card .info .price h6 {
+  color: var(--text2);
+  font-family: "sans";
+  font-size: 11px;
+  font-weight: 400;
+  text-decoration: none;
+}
+#hotelsPage .container .card button {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #3b97a3;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "sans";
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: var(--accent);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+}
+#hotelsPage .container .card:hover img {
+  transform: translateY(-100%);
+}
+#hotelsPage .container .card:hover .info, #hotelsPage .container .card:hover button {
+  transform: translateY(-230px);
+}
+
+#BookedRoomsPage {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+}
+#BookedRoomsPage .cities {
+  width: 1140px;
+  height: auto;
+  margin-top: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+#BookedRoomsPage .cities .city {
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+  padding: 10px 15px;
+  color: var(--text);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+#BookedRoomsPage .cities .city:hover {
+  background-color: rgba(143, 143, 143, 0.2039215686);
+  opacity: 0.8;
+}
+#BookedRoomsPage .cities .all {
+  color: #fff;
+  background-color: var(--accent);
+  transition: all 0.3s ease;
+}
+#BookedRoomsPage .cities .all:hover {
+  background-color: var(--accent);
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  #homePage .favoriteRooms, #homePage .uspSection {
+    width: 90%;
+    height: auto;
+  }
+  #homePage .favoriteRooms .title span, #homePage .uspSection .title span {
+    width: 30%;
+  }
+  #hotelsPage .cities, #hotelsPage .container {
+    width: 90%;
+    height: auto;
+  }
+  #hotelsPage .container .card {
+    width: 263px;
+    height: 215px;
+  }
+  #BookedRoomsPage .cities, #BookedRoomsPage .container {
+    width: 90%;
+    height: auto;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  #homePage .favoriteRooms, #homePage .uspSection {
+    width: 90%;
+    height: auto;
+  }
+  #homePage .favoriteRooms .title span, #homePage .uspSection .title span {
+    width: 30%;
+  }
+  #hotelsPage .cities {
+    display: none;
+  }
+  #hotelsPage .container {
+    width: 90%;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 50px;
+  }
+  #hotelsPage .container .card {
+    width: 100%;
+    height: auto;
+  }
+  #hotelsPage .container .card .info {
+    height: 55px;
+  }
+  #hotelsPage .container .card:hover img, #hotelsPage .container .card:hover .info, #hotelsPage .container .card:hover button {
+    transform: none;
+  }
+  #BookedRoomsPage .cities {
+    display: none;
+  }
+  #BookedRoomsPage .container {
+    width: 90%;
+    height: auto;
+  }
+}
+@media screen and (min-width: 300px) and (max-width: 600px) {
+  #homePage .first div {
+    top: 10%;
+    right: 14%;
+  }
+  #homePage .favoriteRooms, #homePage .uspSection {
+    width: 90%;
+    height: auto;
+  }
+  #homePage .favoriteRooms .title span, #homePage .uspSection .title span {
+    width: 30%;
+  }
+  #homePage .uspSection .container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  #homePage .uspSection .container .box {
+    width: 100%;
+    gap: 10px;
+  }
+  #hotelsPage .cities {
+    display: none;
+  }
+  #hotelsPage .container {
+    width: 90%;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 50px;
+  }
+  #hotelsPage .container .card {
+    width: 100%;
+    height: auto;
+  }
+  #hotelsPage .container .card .info {
+    height: 55px;
+  }
+  #hotelsPage .container .card:hover img, #hotelsPage .container .card:hover .info, #hotelsPage .container .card:hover button {
+    transform: none;
+  }
+  #BookedRoomsPage .cities {
+    display: none;
+  }
+  #BookedRoomsPage .container {
+    width: 90%;
+    height: auto;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -28,3 +28,31 @@ themeBtn.addEventListener('click', ()=>{
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
 });
+
+
+const cities = document.querySelector(".cities");
+const citiesAPI = 'https://hotelbooking.stepprojects.ge/api/Hotels/GetCities';
+fetch(citiesAPI).then(response => response.json()).then(array => {
+    array.forEach(city => {
+        cities.innerHTML += `<div class="city">${city}</div>`
+    });
+})
+
+const hotels = document.querySelector("#hotelsID");
+const hotelsAPI = 'https://hotelbooking.stepprojects.ge/api/Hotels/GetHotels?city=tbilisi';
+fetch(hotelsAPI).then(response => response.json()).then(info => {
+    info.forEach(obj => {
+        hotels.innerHTML += `<div class="card">
+                                <img src="${obj.featuredImage}" alt="">
+                                <div class="info">
+                                    <p>${obj.name}</p>
+                                </div>
+                                <a href="rooms.html"><button>VIEW ROOMS</button></a>
+                            </div>`
+    })
+})
+
+
+
+
+

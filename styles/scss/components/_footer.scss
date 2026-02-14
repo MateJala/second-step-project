@@ -1,6 +1,7 @@
 footer {
     @include size(100%, auto);
     @include flex(center);
+    margin-top: 60px;
     background-color: #272727;
     .wraper {
         @include size(1140px, 74px);

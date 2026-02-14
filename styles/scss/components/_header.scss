@@ -5,6 +5,8 @@ header {
     background-color: var(--bg);
     position: sticky;
     top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--borders);
     .wraper {
         position: relative;
         @include size(1140px, 84px);
