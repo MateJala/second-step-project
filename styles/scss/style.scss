@@ -272,7 +272,94 @@ body {
             }
         }
     }
+    .container {
+        @include size(1140px, auto);
+        table {
+            @include size(100%, auto);
+            thead {
+                border-bottom: 1px solid var(--borders);
+                tr {
+
+                    th {
+                        @include size(auto, auto);
+                        @include text(var(--text2), 13px, 700);
+                    }
+                }
+            }
+            tbody {
+                
+                tr {
+                    border-top: 1px solid var(--borders);
+                    td {
+                        .Hotel, .Room, .Customer {
+                            @include flex(center);
+                            gap: 20px;
+                            img {
+                                @include size(45px, 45px);
+                            }
+                            div {
+                                @include flex(center);
+                                flex-direction: column;
+                                gap: 15px;
+                                h5 {
+                                    @include text(var(--text2), 13px, 700);
+                                }
+                                p {
+                                    @include text(#777, 13px, 400);
+                                }
+                            }
+                        }
+                        .Status div{
+                            @include size(auto, auto);
+                            padding: 3px 7px;
+                            border-radius: 5px;
+                            background-color: var(--borders);
+                            @include text(#fff, 12px, 700);
+                        }
+                        h5 {
+                            @include text(var(--text2), 13px, 700);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+#roomsPage {
+    @include size(100%, auto);
+    @include flex(center);
+    flex-direction: column;
+    gap: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+    .types {
+        @include size(1140px, auto);
+        margin-top: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+        @include flex(flex-start);
+        gap: 5px;
+        .roomType {
+            border-radius: 5px;
+            @include size(auto, auto);
+            padding: 10px 15px;
+            @include text(var(--text), 13px, 400);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            &:hover {
+                background-color: #8f8f8f34;
+                opacity: 0.8;   
+            }
+        }
+        .all {
+            color: #fff;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+            &:hover {
+                background-color: var(--accent);
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
 
 @media screen and (min-width: 901px) and (max-width: 1200px){
     #homePage {

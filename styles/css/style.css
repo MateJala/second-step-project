@@ -600,6 +600,125 @@ body {
   background-color: var(--accent);
   opacity: 0.8;
 }
+#BookedRoomsPage .container {
+  width: 1140px;
+  height: auto;
+}
+#BookedRoomsPage .container table {
+  width: 100%;
+  height: auto;
+}
+#BookedRoomsPage .container table thead {
+  border-bottom: 1px solid var(--borders);
+}
+#BookedRoomsPage .container table thead tr th {
+  width: auto;
+  height: auto;
+  color: var(--text2);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+#BookedRoomsPage .container table tbody tr {
+  border-top: 1px solid var(--borders);
+}
+#BookedRoomsPage .container table tbody tr td .Hotel, #BookedRoomsPage .container table tbody tr td .Room, #BookedRoomsPage .container table tbody tr td .Customer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+#BookedRoomsPage .container table tbody tr td .Hotel img, #BookedRoomsPage .container table tbody tr td .Room img, #BookedRoomsPage .container table tbody tr td .Customer img {
+  width: 45px;
+  height: 45px;
+}
+#BookedRoomsPage .container table tbody tr td .Hotel div, #BookedRoomsPage .container table tbody tr td .Room div, #BookedRoomsPage .container table tbody tr td .Customer div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+#BookedRoomsPage .container table tbody tr td .Hotel div h5, #BookedRoomsPage .container table tbody tr td .Room div h5, #BookedRoomsPage .container table tbody tr td .Customer div h5 {
+  color: var(--text2);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+#BookedRoomsPage .container table tbody tr td .Hotel div p, #BookedRoomsPage .container table tbody tr td .Room div p, #BookedRoomsPage .container table tbody tr td .Customer div p {
+  color: #777;
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+}
+#BookedRoomsPage .container table tbody tr td .Status div {
+  width: auto;
+  height: auto;
+  padding: 3px 7px;
+  border-radius: 5px;
+  background-color: var(--borders);
+  color: #fff;
+  font-family: "sans";
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+#BookedRoomsPage .container table tbody tr td h5 {
+  color: var(--text2);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#roomsPage {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+}
+#roomsPage .types {
+  width: 1140px;
+  height: auto;
+  margin-top: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+#roomsPage .types .roomType {
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+  padding: 10px 15px;
+  color: var(--text);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+#roomsPage .types .roomType:hover {
+  background-color: rgba(143, 143, 143, 0.2039215686);
+  opacity: 0.8;
+}
+#roomsPage .types .all {
+  color: #fff;
+  background-color: var(--accent);
+  transition: all 0.3s ease;
+}
+#roomsPage .types .all:hover {
+  background-color: var(--accent);
+  opacity: 0.8;
+}
 
 @media screen and (min-width: 901px) and (max-width: 1200px) {
   #homePage .favoriteRooms, #homePage .uspSection {
