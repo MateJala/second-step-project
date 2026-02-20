@@ -41,8 +41,7 @@ header {
             gap: 20px;
             button {
                 @include size(28px, 28px);
-                border: 1px solid var(--accent);
-                border-radius: 50%;
+                border: none;
                 background-color: var(--bg);
                 cursor: pointer;
             }

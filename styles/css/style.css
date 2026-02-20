@@ -8,14 +8,15 @@
   --text2: #333333;
   --accent: #75c5cf;
   --borders: #cccccc;
+  --btn: #ffffff;
 }
 
 [data-theme=dark] {
-  --bg: #000000;
-  --text: #ffffff;
-  --text2: #c0bdbd;
-  --accent: #75c5cf;
-  --borders: #fb0000;
+  --bg: #1a1a1a;
+  --text: #b0b0b0;
+  --text2: #e0e0e0;
+  --accent: #8fd9e5;
+  --borders: #404040;
 }
 
 * {
@@ -90,8 +91,7 @@ header .wraper .right {
 header .wraper .right button {
   width: 28px;
   height: 28px;
-  border: 1px solid var(--accent);
-  border-radius: 50%;
+  border: none;
   background-color: var(--bg);
   cursor: pointer;
 }
@@ -392,7 +392,7 @@ body {
   height: 44px;
   border: 1px solid #3b97a3;
   border-radius: 5px;
-  color: var(--bg);
+  color: var(--btn);
   font-family: "sans";
   font-size: 14px;
   font-weight: 600;
@@ -616,7 +616,7 @@ body {
   height: 44px;
   border: 1px solid #3b97a3;
   border-radius: 5px;
-  color: #fff;
+  color: var(--btn);
   font-family: "sans";
   font-size: 14px;
   font-weight: 600;
@@ -687,7 +687,6 @@ body {
   width: 100%;
   height: auto;
   border-collapse: collapse;
-  min-width: 900px;
 }
 #BookedRoomsPage .container table thead {
   border-bottom: 1px solid var(--borders);
@@ -922,6 +921,17 @@ body {
     width: 90%;
     height: auto;
   }
+  #BookedRoomsPage .container table thead tr th {
+    width: auto;
+  }
+  #BookedRoomsPage .container table tbody tr td.Hotel .hotel-content {
+    align-items: center;
+    flex-direction: column;
+  }
+  #BookedRoomsPage .container table tbody tr td.Room .room-content {
+    align-items: center;
+    flex-direction: column;
+  }
 }
 @media screen and (min-width: 601px) and (max-width: 900px) {
   #homePage .favoriteRooms, #homePage .uspSection {
@@ -970,6 +980,17 @@ body {
   #BookedRoomsPage .container {
     width: 90%;
     height: auto;
+  }
+  #BookedRoomsPage .container table thead tr th {
+    width: auto;
+  }
+  #BookedRoomsPage .container table tbody tr td.Hotel .hotel-content {
+    align-items: center;
+    flex-direction: column;
+  }
+  #BookedRoomsPage .container table tbody tr td.Room .room-content {
+    align-items: center;
+    flex-direction: column;
   }
 }
 @media screen and (min-width: 300px) and (max-width: 600px) {
