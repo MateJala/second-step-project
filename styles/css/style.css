@@ -681,75 +681,179 @@ body {
 #BookedRoomsPage .container {
   width: 1140px;
   height: auto;
+  overflow-x: auto;
 }
 #BookedRoomsPage .container table {
   width: 100%;
   height: auto;
+  border-collapse: collapse;
+  min-width: 900px;
 }
 #BookedRoomsPage .container table thead {
   border-bottom: 1px solid var(--borders);
 }
 #BookedRoomsPage .container table thead tr th {
-  width: auto;
-  height: auto;
   color: var(--text2);
   font-family: "sans";
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
+  padding: 8px;
+  text-align: left;
+}
+#BookedRoomsPage .container table thead tr th:nth-child(1) {
+  width: 13%;
+}
+#BookedRoomsPage .container table thead tr th:nth-child(2) {
+  width: 13%;
+}
+#BookedRoomsPage .container table thead tr th:nth-child(3) {
+  width: 37%;
+}
+#BookedRoomsPage .container table thead tr th:nth-child(4) {
+  width: 8%;
+}
+#BookedRoomsPage .container table thead tr th:nth-child(5) {
+  width: 5%;
+}
+#BookedRoomsPage .container table thead tr th:nth-child(6) {
+  width: 5%;
+}
+#BookedRoomsPage .container table thead tr th:nth-child(7) {
+  width: 8%;
+}
+#BookedRoomsPage .container table thead tr th:nth-child(8) {
+  width: 11%;
 }
 #BookedRoomsPage .container table tbody tr {
   border-top: 1px solid var(--borders);
 }
-#BookedRoomsPage .container table tbody tr td .Hotel, #BookedRoomsPage .container table tbody tr td .Room, #BookedRoomsPage .container table tbody tr td .Customer {
+#BookedRoomsPage .container table tbody tr td {
+  color: var(--text);
+  font-family: "sans";
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 8px;
+  vertical-align: top;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+#BookedRoomsPage .container table tbody tr td.Hotel .hotel-content {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
   gap: 20px;
 }
-#BookedRoomsPage .container table tbody tr td .Hotel img, #BookedRoomsPage .container table tbody tr td .Room img, #BookedRoomsPage .container table tbody tr td .Customer img {
+#BookedRoomsPage .container table tbody tr td.Hotel .hotel-content img {
   width: 45px;
   height: 45px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
-#BookedRoomsPage .container table tbody tr td .Hotel div, #BookedRoomsPage .container table tbody tr td .Room div, #BookedRoomsPage .container table tbody tr td .Customer div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 15px;
+#BookedRoomsPage .container table tbody tr td.Hotel .hotel-content div {
+  flex: 1;
+  min-width: 0;
 }
-#BookedRoomsPage .container table tbody tr td .Hotel div h5, #BookedRoomsPage .container table tbody tr td .Room div h5, #BookedRoomsPage .container table tbody tr td .Customer div h5 {
+#BookedRoomsPage .container table tbody tr td.Hotel .hotel-content div h5 {
   color: var(--text2);
   font-family: "sans";
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
+  margin: 0;
+  line-height: 1.4;
 }
-#BookedRoomsPage .container table tbody tr td .Hotel div p, #BookedRoomsPage .container table tbody tr td .Room div p, #BookedRoomsPage .container table tbody tr td .Customer div p {
+#BookedRoomsPage .container table tbody tr td.Hotel .hotel-content div p {
   color: #777;
   font-family: "sans";
   font-size: 13px;
   font-weight: 400;
   text-decoration: none;
+  margin: 5px 0 0 0;
+  line-height: 1.4;
 }
-#BookedRoomsPage .container table tbody tr td .Status div {
-  width: auto;
-  height: auto;
+#BookedRoomsPage .container table tbody tr td.Room .room-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+#BookedRoomsPage .container table tbody tr td.Room .room-content img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+#BookedRoomsPage .container table tbody tr td.Room .room-content div {
+  flex: 1;
+  min-width: 0;
+}
+#BookedRoomsPage .container table tbody tr td.Room .room-content div h5 {
+  color: var(--text2);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 0;
+  line-height: 1.4;
+}
+#BookedRoomsPage .container table tbody tr td.Room .room-content div h5:last-child {
+  margin-top: 5px;
+}
+#BookedRoomsPage .container table tbody tr td.Customer div h5 {
+  color: var(--text2);
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 0;
+  line-height: 1.4;
+}
+#BookedRoomsPage .container table tbody tr td.Customer div p {
+  color: #777;
+  font-family: "sans";
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  margin: 5px 0 0 0;
+  line-height: 1.4;
+}
+#BookedRoomsPage .container table tbody tr td.Status .status-badge {
+  display: inline-block;
   padding: 3px 7px;
-  border-radius: 5px;
+  border-radius: 20px;
   background-color: var(--borders);
   color: #fff;
   font-family: "sans";
   font-size: 12px;
   font-weight: 700;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
-#BookedRoomsPage .container table tbody tr td h5 {
+#BookedRoomsPage .container table tbody tr td.Checkin h5, #BookedRoomsPage .container table tbody tr td.Checkout h5, #BookedRoomsPage .container table tbody tr td.TotalPrice h5 {
   color: var(--text2);
   font-family: "sans";
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
+  margin: 0;
+  line-height: 1.4;
+}
+#BookedRoomsPage .container table tbody tr td.Actions button {
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+#BookedRoomsPage .container table tbody tr td.Actions button:hover {
+  background-color: #c82333;
 }
 
 #roomsPage {

@@ -15,7 +15,7 @@ body {
     background-color: var(--bg);
     transition: all 0.3s ease;
 }
-#homePage {
+#homePage { 
     @include size(100%, auto);
     @include flex(center);
     flex-direction: column;
@@ -298,11 +298,13 @@ body {
     @include flex(center);
     flex-direction: column;
     gap: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+    
     .cities {
         @include size(1140px, auto);
         margin-top: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
         @include flex(flex-start);
         gap: 5px;
+        
         .city {
             border-radius: 5px;
             @include size(auto, auto);
@@ -311,67 +313,192 @@ body {
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
+            
             &:hover {
                 background-color: #8f8f8f34;
                 opacity: 0.8;   
             }
         }
+        
         .all {
             color: #fff;
             background-color: var(--accent);
             transition: all 0.3s ease;
+            
             &:hover {
                 background-color: var(--accent);
                 opacity: 0.8;
             }
         }
     }
+    
     .container {
         @include size(1140px, auto);
+        overflow-x: auto; // Keep horizontal scroll for the table if needed
+        
         table {
             @include size(100%, auto);
+            border-collapse: collapse;
+            min-width: 900px; // Minimum width before scroll appears
+            
             thead {
                 border-bottom: 1px solid var(--borders);
+                
                 tr {
-
                     th {
-                        @include size(auto, auto);
                         @include text(var(--text2), 13px, 700);
+                        padding: 8px;
+                        text-align: left;
+                        // REMOVED: white-space: nowrap;
+                        
+                        &:nth-child(1) { width: 13%; } // Hotel
+                        &:nth-child(2) { width: 13%; } // Room
+                        &:nth-child(3) { width: 37%; } // Customer
+                        &:nth-child(4) { width: 8%; } // Status
+                        &:nth-child(5) { width: 5%; } // Check in
+                        &:nth-child(6) { width: 5%; } // Check out
+                        &:nth-child(7) { width: 8%; } // Total Price
+                        &:nth-child(8) { width: 11%; } // Actions
                     }
                 }
             }
+            
             tbody {
-                
                 tr {
                     border-top: 1px solid var(--borders);
+                    
                     td {
-                        .Hotel, .Room, .Customer {
-                            @include flex(center);
-                            gap: 20px;
-                            img {
-                                @include size(45px, 45px);
+                        @include text(var(--text), 14px, 400);
+                        padding: 8px;
+                        vertical-align: top;
+                        word-wrap: break-word; // Allow long words to break
+                        word-break: break-word; // Break long words if needed
+                        
+                        // Hotel cell
+                        &.Hotel {
+                            .hotel-content {
+                                display: flex;
+                                align-items: flex-start; // Changed from center to flex-start for better text wrapping
+                                gap: 20px;
+                                
+                                img {
+                                    @include size(45px, 45px);
+                                    object-fit: cover;
+                                    flex-shrink: 0;
+                                }
+                                
+                                div {
+                                    flex: 1; // Allow div to take remaining space
+                                    min-width: 0; // Allow flex item to shrink below content size
+                                    
+                                    h5 {
+                                        @include text(var(--text2), 13px, 700);
+                                        margin: 0;
+                                        // REMOVED: white-space: nowrap;
+                                        line-height: 1.4;
+                                    }
+                                    
+                                    p {
+                                        @include text(#777, 13px, 400);
+                                        margin: 5px 0 0 0;
+                                        // REMOVED: white-space: nowrap;
+                                        line-height: 1.4;
+                                    }
+                                }
                             }
+                        }
+                        
+                        // Room cell
+                        &.Room {
+                            .room-content {
+                                display: flex;
+                                align-items: flex-start; // Changed from center to flex-start
+                                gap: 20px;
+                                
+                                img {
+                                    @include size(45px, 45px);
+                                    object-fit: cover;
+                                    flex-shrink: 0;
+                                }
+                                
+                                div {
+                                    flex: 1;
+                                    min-width: 0;
+                                    
+                                    h5 {
+                                        @include text(var(--text2), 13px, 700);
+                                        margin: 0;
+                                        // REMOVED: white-space: nowrap;
+                                        line-height: 1.4;
+                                        
+                                        &:last-child {
+                                            margin-top: 5px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // Customer cell
+                        &.Customer {
                             div {
-                                @include flex(center);
-                                flex-direction: column;
-                                gap: 15px;
                                 h5 {
                                     @include text(var(--text2), 13px, 700);
+                                    margin: 0;
+                                    // REMOVED: white-space: nowrap;
+                                    line-height: 1.4;
                                 }
                                 p {
                                     @include text(#777, 13px, 400);
+                                    margin: 5px 0 0 0;
+                                    // REMOVED: white-space: nowrap;
+                                    line-height: 1.4;
                                 }
                             }
                         }
-                        .Status div{
-                            @include size(auto, auto);
-                            padding: 3px 7px;
-                            border-radius: 5px;
-                            background-color: var(--borders);
-                            @include text(#fff, 12px, 700);
+                        
+                        // Status cell
+                        &.Status {
+                            .status-badge {
+                                display: inline-block;
+                                padding: 3px 7px;
+                                border-radius: 20px;
+                                background-color: var(--borders);
+                                @include text(#fff, 12px, 700);
+                                text-transform: uppercase;
+                                letter-spacing: 0.5px;
+                                white-space: nowrap; // Keep status badge on one line - this is fine
+                            }
                         }
-                        h5 {
-                            @include text(var(--text2), 13px, 700);
+                        
+                        // Check in, Check out, Total Price cells
+                        &.Checkin, &.Checkout, &.TotalPrice {
+                            h5 {
+                                @include text(var(--text2), 13px, 700);
+                                margin: 0;
+                                // REMOVED: white-space: nowrap;
+                                line-height: 1.4;
+                            }
+                        }
+                        
+                        // Actions cell
+                        &.Actions {
+                            button {
+                                padding: 5px 10px;
+                                background-color: #dc3545;
+                                color: white;
+                                border: none;
+                                border-radius: 5px;
+                                font-size: 12px;
+                                font-weight: 600;
+                                cursor: pointer;
+                                white-space: nowrap; // Keep button text on one line
+                                transition: background-color 0.3s ease;
+                                
+                                &:hover {
+                                    background-color: #c82333;
+                                }
+                            }
                         }
                     }
                 }
