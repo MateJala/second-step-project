@@ -35,7 +35,7 @@ if(cities) {
         array.forEach(city => {
             cities.innerHTML += `<div class="city">${city}</div>`
         });
-    })
+    });
 }
 const types = document.querySelector(".types");
 if(types) {
@@ -44,33 +44,39 @@ if(types) {
         array.forEach(type => {
             types.innerHTML += `<div class="roomType">${type.name}</div>`
         });
-    })
+    });
 }
 
 const hotels = document.querySelector("#hotelsID");
 if(hotels) {
     const hotelsAPI = 'https://hotelbooking.stepprojects.ge/api/Hotels/GetHotels?city=tbilisi';
     fetch(hotelsAPI).then(response => response.json()).then(info => {
+        hotels.innerHTML = ``;
         info.forEach(obj => {
-            hotels.innerHTML += `<div class="card">
-                                    <img src="${obj.featuredImage}" alt="">
-                                    <div class="info">
-                                        <p>${obj.name}</p>
-                                    </div>
-                                    <a href="rooms.html"><button>VIEW ROOMS</button></a>
-                                </div>`
+                hotels.innerHTML += `<div class="card">
+                                        <img src="${obj.featuredImage}" alt="">
+                                        <div class="info">
+                                            <p>${obj.name}</p>
+                                        </div>
+                                        <a href="rooms.html"><button>VIEW ROOMS</button></a>
+                                    </div>`
         })
-    })
+    }).catch(e => {
+        hotels.innerHTML = `<span>Failed to load hotels. Please try again later.</span>`;
+    });
 }
 
 const favoriteRooms = document.querySelector("#favoriteRooms");
 if(favoriteRooms){
-    for(let i = 1; i <= 6; i++){
-        const roomApi = `https://hotelbooking.stepprojects.ge/api/Rooms/GetRoom/${i}`
-        fetch(roomApi)
-            .then(response =>  response.json())
-            .then(room => {
-                favoriteRooms.innerHTML += `<div class="card">
+const API_URL = 'https://hotelbooking.stepprojects.ge/api/Rooms/GetAll';
+async function getFavRooms(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const rooms = data.slice(0, 6);
+        favoriteRooms.innerHTML = "";
+        rooms.forEach(room => {
+            favoriteRooms.innerHTML += `<div class="card">
                                     <img src="${room.images[0].source}" alt="${room.name}">
                                     <div class="info">
                                         <p>${room.name}</p>
@@ -81,8 +87,27 @@ if(favoriteRooms){
                                     </div>
                                     <button>BOOK NOW</button>
                                 </div>`
-            });
+        }); 
+    } catch (e) {
+        console.log(e)
+        favoriteRooms.innerHTML = `<span>Failed to load favorite rooms. Please try again later.</span>`;
     }
+}
+getFavRooms(API_URL);
+}
+
+function deleteBooking(id){
+    console.log(id)
+    fetch(`https://hotelbooking.stepprojects.ge/api/Booking/${id}`, {
+    method: 'DELETE',
+    header: 'application/json'}) .then(response => {
+    if(response.ok) {
+        console.log('deleted'); 
+    } else {
+        console.error('delete failed');
+    }
+    })
+    .catch(e => console.error('error:', e));
 }
 
 const bookedRooms = document.querySelector(".bookedRooms");     
@@ -143,7 +168,7 @@ if(bookedRooms) {
                             <h5>${booking.totalPrice}€</h5>
                         </td>
                         <td class="Actions">
-                            <button data-booking-id="${booking.id}">CANCEL BOOKING</button>
+                            <button onClick="deleteBooking(${booking.id})">CANCEL BOOKING</button>
                         </td>
                     </tr>`;
                     
@@ -163,3 +188,68 @@ if(bookedRooms) {
 }
 
 
+const roomsPage = document.querySelector("#roomsPage");
+if(roomsPage){
+    getRoomAll();
+    window.onload = function () {
+        slideOne();
+        slideTwo();
+    };
+
+    let sliderOne = document.getElementById("slider-1");
+    let sliderTwo = document.getElementById("slider-2");
+    let valOne = document.getElementById("valOne");
+    let valTwo = document.getElementById("valTwo");
+    let minGap = 0;
+    let sliderTrack = document.querySelector(".slider-track");
+    let sliderMaxValue = document.getElementById("slider-1").max;
+
+    function slideOne() {
+    if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+        sliderOne.value = parseInt(sliderTwo.value) - minGap;
+    }
+    valOne.value = sliderOne.value;
+    fillColor();
+    }
+    function slideTwo() {
+    if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+        sliderTwo.value = parseInt(sliderOne.value) + minGap;
+    }
+    valTwo.value  = sliderTwo.value;
+    fillColor();
+    }
+    function fillColor() {
+    percent1 = (sliderOne.value / sliderMaxValue) * 100;
+    percent2 = (sliderTwo.value / sliderMaxValue) * 100;
+    sliderTrack.style.background = `linear-gradient(to right, var(--borders) ${percent1}% , var(--accent) ${percent1}% , var(--accent) ${percent2}%, var(--borders) ${percent2}%)`;
+    }
+
+    
+}
+
+
+const roomsContainer = document.querySelector(".roomsContainer");
+async function getRoomAll() {
+    try {
+        const response = await fetch("https://hotelbooking.stepprojects.ge/api/Rooms/GetAll");
+        const rooms = await response.json();
+        
+        roomsContainer.innerHTML = '';
+        rooms.forEach(room => {
+            roomsContainer.innerHTML += `<div class="card">
+                                    <img src="${room.images[0].source}" alt="${room.name}">
+                                    <div class="info">
+                                        <p>${room.name}</p>
+                                        <div class="price">
+                                            <h5>€ ${room.pricePerNight}</h5>
+                                            <h6>a night</h6>
+                                        </div>
+                                    </div>
+                                    <button>BOOK NOW</button>
+                                </div>`
+        }); 
+    } catch (e) {
+        console.log(e)
+        roomsContainer.innerHTML = `<span>Failed to load favorite rooms. Please try again later.</span>`;
+    }
+}

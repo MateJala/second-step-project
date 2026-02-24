@@ -133,7 +133,10 @@ body {
                         transform: translateY(-230px);
                     }
                 }
-            }   
+            }  
+            span {
+                @include text(var(--text), 14px, 400);
+            }
         }
     }
     .uspSection{
@@ -290,6 +293,9 @@ body {
                     transform: translateY(-230px);
                 }
             }
+        }
+        span {
+            @include text(var(--text), 14px, 400);
         }
     }
 }
@@ -538,6 +544,252 @@ body {
             }
         }
     }
+    .filter {
+        @include size(1140px, auto);
+        @include flex(space-between);
+        align-items: flex-start;
+        border: 1px solid var(--borders);
+        padding: 25px;
+        border-radius: 5px;
+        @include text(var(--text), 13px, 700);
+        .price {
+            @include size(20%, auto);
+            @include flex(center);
+            flex-direction: column;
+            gap: 8px;
+            .container {
+                position: relative;
+                width: 100%;
+                height: 20px;
+                border: 1px solid var(--borders);
+                border-radius: 5px;
+            }
+            input[type="range"] {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                width: 100%;
+                outline: none;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                background-color: transparent;
+                pointer-events: none;
+            }
+            .slider-track {
+                width: 100%;
+                height: 3px;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                border-radius: 5px;
+            }
+            input[type="range"]::-webkit-slider-runnable-track {
+                -webkit-appearance: none;
+                height: 3px;
+            }
+            input[type="range"]::-moz-range-track {
+                -moz-appearance: none;
+                height: 3px;
+            }
+            input[type="range"]::-ms-track {
+                appearance: none;
+                height: 3px;
+            }
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 0.9em;
+                width: 0.9em;
+                margin-top: -5px;
+                pointer-events: auto;
+                border: 1px solid var(--borders);
+                background-color: var(--bg);
+                border-radius: 2px;
+                &:hover {
+                    border-color: var(--accent);
+                }
+            }
+            input[type="range"]::-moz-range-thumb {
+                -webkit-appearance: none;
+                height: 0.9em;
+                width: 0.9em;
+                cursor: pointer;
+                margin-top: -5px;
+                pointer-events: auto;
+                border: 1px solid var(--borders);
+                background-color: var(--bg);
+                border-radius: 2px;
+                &:hover {
+                    border-color: var(--accent);
+                }
+            }
+            input[type="range"]::-ms-thumb {
+                -webkit-appearance: none;
+                height: 0.9em;
+                width: 0.9em;
+                cursor: pointer;
+                margin-top: -5px;
+                pointer-events: auto;
+                border: 1px solid var(--borders);
+                background-color: var(--bg);
+                border-radius: 2px;
+                &:hover {
+                    border-color: var(--accent);
+                }
+            }
+            input[type="range"]:active::-webkit-slider-thumb {
+                background-color: var(--bg);
+                border: 1px solid var(--borders);
+            }
+            .inputs {
+                @include flex(center);
+                gap: 8px;
+                input {
+                    @include size(65px, 35px);
+                    outline: none;
+                    text-align: center;
+                    border: 1px solid var(--borders);
+                    border-radius: 5px;
+                    color: var(--text);
+                    background-color: var(--bg);
+                }
+            }
+        }
+        .roomType {
+            @include size(12%, auto);
+            @include flex(center);
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
+            #roomType {
+                @include size(100%, auto);
+                @include text(var(--borders), 14px, 400);
+                background-color: var(--bg);
+                outline: none;
+                border: 1px solid var(--borders);
+                border-radius: 5px;
+                padding: 6px 12px;
+            }
+        }
+        .date {
+            @include size(12%, auto);
+            @include flex(center);
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
+            input {
+                @include size(100%, auto);
+                @include text(var(--borders), 14px, 400);
+                background-color: var(--bg);
+                outline: none;
+                border: 1px solid var(--borders);
+                border-radius: 5px;
+                cursor: pointer;
+                padding: 6px 12px;
+            }
+        }
+        .guests {
+            @include size(5%, auto);
+            @include flex(center);
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
+            select {
+                @include size(100%, auto);
+                @include text(var(--borders), 14px, 400);
+                background-color: var(--bg);
+                outline: none;
+                border: 1px solid var(--borders);
+                border-radius: 5px;
+                cursor: pointer;
+                padding: 6px 12px;
+            }
+        }
+        .buttons {
+            @include size(164px, auto);
+            @include flex(center);
+            flex-direction: column;
+            button {
+                @include size(100%, 34px);
+                margin-top: 25px;
+                cursor: pointer;
+                @include text(var(--btn), 14px, 700);
+                background-color: var(--accent);
+                border: 1px solid #3b97a3;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+                &:hover {
+                    background-color: rgb(118, 211, 223);
+                }
+            }
+        }
+    }
+    .roomsContainer {
+        @include size(1140px, auto);
+        @include flex(flex-start);
+        flex-wrap: wrap;
+        gap: 20px;
+        span {
+            @include text(var(--text), 14px, 400);
+        }
+        .card {
+            @include size(356px, 283px);
+            border: 1px solid var(--borders);
+            overflow: hidden;
+            cursor: pointer;
+            img {
+                @include size(100%, 80.5%);
+                object-fit: cover;
+                transition: transform 0.3s ease;
+                transform: translateY(0);
+            }
+            .info {
+                @include flex(space-between);
+                height: 19.5%;
+                transition: transform 0.3s ease;
+                transform: translateY(0);
+                p  {
+                    @include text(var(--text), 12px, 700);
+                    padding: 0 0 0 20px;
+                }
+                .price {
+                    height: 100%;
+                    @include flex(center);
+                    flex-direction: column;
+                    gap: 5px;
+                    border-left: 1px solid var(--borders);
+                    padding: 0 20px;
+                    background-color: #5fc9d721;
+                    h5 {
+                        @include text(var(--accent), 18px, 700);
+                    }
+                    h6 {
+                        @include text(var(--text2), 11px, 400);
+                    }
+                }  
+            }
+            button {
+                @include size(100%, 44px);
+                border: 1px solid #3b97a3;
+                border-radius: 5px;
+                @include text(var(--btn), 14px, 600);
+                background-color: var(--accent);
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                transform: translateY(0);
+            }
+            &:hover {
+                img {
+                    transform: translateY(-100%);
+                }
+                .info, button {
+                    transform: translateY(-230px);
+                }
+            }
+        }
+    }
 }
 
 
@@ -549,6 +801,9 @@ body {
                 width: 30%;
             }
         }
+        .favoriteRooms .container{
+            justify-content: center;
+        }
     }
     #hotelsPage {
         .cities, .container {
@@ -556,6 +811,12 @@ body {
         }
         .container .card {
             @include size(263px, 215px);
+            &:hover {
+                .info, button {
+                    transform: translateY(-162px);
+                }
+            }
+            
         }
     }
     #BookedRoomsPage {
@@ -588,23 +849,34 @@ body {
                                 }
                             }
                             
-                            &.Customer {
-                            }
+                            // &.Customer {
+                            // }
                             
-                            &.Status {
-                                .status-badge {
-                                }
-                            }
+                            // &.Status {
+                            //     .status-badge {
+                            //     }
+                            // }
                             
-                            &.Checkin, &.Checkout, &.TotalPrice {
-                            }
+                            // &.Checkin, &.Checkout, &.TotalPrice {
+                            // }
                             
-                            &.Actions {
-                            }
+                            // &.Actions {
+                            // }
                         }
                     }
                 }
             }
+        }
+    }
+    #roomsPage {
+        .types, .filter, .roomsContainer {
+            @include size(90%, auto);
+        }
+        .roomsContainer {
+            justify-content: center;
+        }
+        .roomsContainer .card{
+            @include size(354px, 283px);
         }
     }
 }
@@ -704,6 +976,35 @@ body {
             
         }
     }
+    #roomsPage {
+        .types {
+            display: none;
+        }
+        .filter {
+            margin-top: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+            @include size(90%, auto);
+            flex-direction: column;
+            gap: 12px;
+            .price, .roomType, .date, .guests, .buttons {
+                width: 100%;
+            }
+        }
+        .roomsContainer {
+            justify-content: center;
+            width: 90%;
+        }
+        .roomsContainer .card{
+            @include size(100%, auto);
+            .info {
+                height: 55px;
+            }
+            &:hover {
+                img, .info, button {
+                    transform: none;
+                }
+            }
+        }
+    }
 }
 @media screen and (min-width: 300px) and (max-width: 600px){
     #homePage{
@@ -770,6 +1071,35 @@ body {
         }
         .container {
             @include size(90%, auto);
+        }
+    }
+    #roomsPage {
+        .types {
+            display: none;
+        }
+        .filter {
+            margin-top: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+            @include size(90%, auto);
+            flex-direction: column;
+            gap: 12px;
+            .price, .roomType, .date, .guests, .buttons {
+                width: 100%;
+            }
+        }
+        .roomsContainer {
+            width: 90%;
+            justify-content: center;
+        }
+        .roomsContainer .card{
+            @include size(100%, auto);
+            .info {
+                height: 55px;
+            }
+            &:hover {
+                img, .info, button {
+                    transform: none;
+                }
+            }
         }
     }
 }
