@@ -340,11 +340,11 @@ body {
     
     .container {
         @include size(1140px, auto);
-        overflow-x: auto; // Keep horizontal scroll for the table if needed
         
         table {
             @include size(100%, auto);
             border-collapse: collapse;
+            min-width: 820px;
             
             thead {
                 border-bottom: 1px solid var(--borders);
@@ -791,7 +791,283 @@ body {
         }
     }
 }
-
+#roomPage {
+    background-color: var(--bg);
+    padding-top: 20px;
+    @include size(100%, auto);
+    @include flex(center);
+    flex-direction: column;
+    gap: clamp(0.938rem, 0.417rem + 2.778vw, 3.75rem);
+    .first {
+        @include size(1140px, auto);
+        @include flex(space-between);
+        align-items: flex-start;
+        .left {
+            @include size(64%, auto);
+        }
+        .right {
+            @include size(34%, auto);
+            form {
+                padding: 30px;
+                @include size(100%, auto);
+                border: 1px solid var(--borders);
+                border-radius: 5px;
+                @include flex(center);
+                flex-direction: column;
+                gap: 10px;
+                .title {
+                    @include size(100%, auto);
+                    @include flex(space-between);
+                    h2 {
+                        @include text(var(--text), clamp(0.875rem, 0.759rem + 0.617vw, 1.5rem), 600);
+                        text-align: center;
+                    }
+                    span {
+                        @include size(25%, 2px);
+                        background-color: var(--text);
+                    }
+                }
+                label {
+                    @include text(var(--text2), 13px, 700);
+                    @include size(100%, auto);
+                    @include flex(center);
+                    align-items: flex-start;
+                    flex-direction: column;
+                    input {
+                        @include size(100%, 34px);
+                        padding: 6px 12px;
+                        border: 1px solid var(--borders);
+                        border-radius: 5px;
+                        outline: none;
+                        background-color: var(--bg);
+                        color: var(--text);
+                    }
+                }
+                .totalPrice, .priceTag {
+                    width: 100%;
+                    text-align: center;
+                    padding: 10px 25px 0 25px;
+                    border: 1px dashed var(--borders);
+                    p {
+                        @include text(var(--text2), 14px, 600);
+                        .price {
+                            @include text(var(--accent), 18px, 700);
+                        }
+                    }
+                }
+                button {
+                    @include size(100%, 44px);
+                    border: 1px solid #3b97a3;
+                    border-radius: 5px;
+                    @include text(var(--btn), 14px, 600);
+                    background-color: var(--accent);
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #4dcbdc;
+                    }
+                }
+                .hidden {
+                    display: none;
+                }
+            }
+        }
+        span {
+            @include text(var(--text), 14px, 400);
+        }
+    }
+    .second {
+        @include size(1140px, auto);
+        @include flex(space-between);
+        align-items: flex-start;
+        .title {
+            @include size(100%, auto);
+            @include flex(space-between);
+            h2 {
+                @include text(var(--text), clamp(0.875rem, 0.759rem + 0.617vw, 1.5rem), 600);
+                text-align: center;
+            }
+            span {
+                @include size(410px, 2px);
+                background-color: var(--text);
+            }
+        }
+        .left {
+            @include size(59%, auto);
+            @include flex(center);
+            flex-direction: column;
+            gap: 50px;
+            .title span {
+                width: 230px;
+            }
+            .table {
+                @include size(100%, auto);
+                @include flex(center);
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 20px;
+                h5 {
+                    @include text(var(--text), 18px, 600);
+                }
+                table {
+                    @include size(100%, auto);
+                    border-collapse: collapse;
+                    tbody {
+                        tr {
+                            border-top: 1px solid var(--borders);
+                            &:nth-child(odd){
+                                background-color: #5abac60d;
+                            }
+                            &:nth-child(even){
+                                background-color: var(--bg);
+                            }
+                            td {
+                                @include text(var(--text2), 13px, 400);
+                                padding: 8px;
+                            }
+                        }
+                    }
+                }
+                p {
+                    @include text(var(--text2), 13px, 400);
+                }
+            }
+        }
+        .right {
+            @include size(39%, auto);
+            @include flex(center);
+            flex-direction: column;
+            gap: 50px;
+            .title span {
+                width: 150px;
+            }
+            .overview {
+                @include size(100%, auto);
+                .top {
+                    @include size(100%, auto);
+                    @include flex(flex-start);
+                    border-bottom: 1px solid var(--borders);
+                    gap: 2px;
+                    .active {
+                        color: var(--text);
+                        cursor: default;
+                        border: 1px solid var(--borders);
+                        border-bottom: none;
+                        border-radius: 3px 3px 0 0;
+                        padding: 14px 19px 15px 19px;
+                    }
+                    div{
+                        @include text(var(--accent), 13px, 600);
+                        padding: 15px 20px;
+                        cursor: pointer;
+                        &:hover {
+                            padding: 14px 19px 15px 19px;
+                            color: var(--text);
+                            border: 1px solid var(--borders);
+                            border-bottom: none;
+                            border-radius: 3px 3px 0 0;
+                        }
+                    }
+                }
+                .bottom {
+                    @include flex(center);
+                    flex-direction: column;
+                    gap: 10px;
+                    padding: 20px;
+                    p {
+                        @include text(var(--text2), 13px, 400);
+                    }
+                    img {
+                        @include size(197px, 147px);
+                    }
+                    .divide {
+                        @include flex(center);
+                    }
+                }
+            }
+        }
+    }
+    .third {
+        @include size(1140px, auto);
+        .title {
+            @include size(100%, auto);
+            @include flex(space-between);
+            h2 {
+                @include text(var(--text), clamp(0.875rem, 0.759rem + 0.617vw, 1.5rem), 600);
+                text-align: center;
+            }
+            span {
+                @include size(410px, 2px);
+                background-color: var(--text);
+            }
+        }
+        .otherRooms {
+            @include size(100%, auto);
+            @include flex(space-between);
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-top: 40px;
+                .card {
+                    background-color: var(--bg);
+                @include size(356px, 283px);
+                border: 1px solid var(--borders);
+                overflow: hidden;
+                cursor: pointer;
+                img {
+                    @include size(100%, 80.5%);
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
+                    transform: translateY(0);
+                }
+                .info {
+                    @include flex(space-between);
+                    height: 19.5%;
+                    transition: transform 0.3s ease;
+                    transform: translateY(0);
+                    p  {
+                        @include text(var(--text), 12px, 700);
+                        padding: 0 0 0 20px;
+                    }
+                    .price {
+                        height: 100%;
+                        @include flex(center);
+                        flex-direction: column;
+                        gap: 5px;
+                        border-left: 1px solid var(--borders);
+                        padding: 0 20px;
+                        background-color: #5fc9d721;
+                        h5 {
+                            @include text(var(--accent), 18px, 700);
+                        }
+                        h6 {
+                            @include text(var(--text2), 11px, 400);
+                        }
+                    }  
+                }
+                button {
+                    @include size(100%, 44px);
+                    border: 1px solid #3b97a3;
+                    border-radius: 5px;
+                    @include text(var(--btn), 14px, 600);
+                    background-color: var(--accent);
+                    cursor: pointer;
+                    transition: transform 0.3s ease;
+                    transform: translateY(0);
+                }
+                &:hover {
+                    img {
+                        transform: translateY(-100%);
+                    }
+                    .info, button {
+                        transform: translateY(-230px);
+                    }
+                }
+            }  
+            span {
+                @include text(var(--text), 14px, 400);
+            }
+        }
+    }
+}
 
 @media screen and (min-width: 901px) and (max-width: 1200px){
     #homePage {
@@ -848,20 +1124,6 @@ body {
                                     flex-direction: column;
                                 }
                             }
-                            
-                            // &.Customer {
-                            // }
-                            
-                            // &.Status {
-                            //     .status-badge {
-                            //     }
-                            // }
-                            
-                            // &.Checkin, &.Checkout, &.TotalPrice {
-                            // }
-                            
-                            // &.Actions {
-                            // }
                         }
                     }
                 }
@@ -877,6 +1139,42 @@ body {
         }
         .roomsContainer .card{
             @include size(354px, 283px);
+        }
+    }
+    #roomPage {
+        .first {
+            @include size(90%, auto);
+        }
+        .second {
+            @include size(90%, auto);
+            .title {
+                height: 48px;
+                span {
+                    width: 30%;
+                }
+            }
+
+            .left {
+                
+            }
+            .right {
+                .overview {
+                    .bottom {
+                        .divide {
+                            flex-direction: column-reverse;
+                        }
+                    }
+                }
+            }
+        }
+        .third {
+            @include size(90%, auto);
+            .title span {
+                width: 30%;
+            }
+            .otherRooms {
+                justify-content: center;
+            }
         }
     }
 }
@@ -955,20 +1253,6 @@ body {
                                         flex-direction: column;
                                     }
                                 }
-                                
-                                &.Customer {
-                                }
-                                
-                                &.Status {
-                                    .status-badge {
-                                    }
-                                }
-                                
-                                &.Checkin, &.Checkout, &.TotalPrice {
-                                }
-                                
-                                &.Actions {
-                                }
                             }
                         }
                     }
@@ -1001,6 +1285,72 @@ body {
             &:hover {
                 img, .info, button {
                     transform: none;
+                }
+            }
+        }
+    }
+    #roomPage {
+    
+        .first {
+            @include size(90%, auto);
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            .left {
+                @include size(100%, auto);
+            }
+            .right {
+                @include size(100%, auto);
+                form .title span {
+                    width: 35%;
+                }
+            }
+        }
+        .second {
+            @include size(90%, auto);
+            flex-direction: column;
+            gap: 50px;
+            .title {
+                height: 48px;
+            }
+
+            .left {
+                width: 100%;
+                .title span {
+                    width: 35%;
+                }
+            }
+            .right {
+                width: 100%;
+                .title span {
+                    width: 35%;
+                }
+                .overview {
+                    .bottom {
+                        .divide {
+                            align-items: flex-start;
+                        }
+                    }
+                }
+            }
+        }
+        .third {
+            @include size(90%, auto);
+            .title span {
+                width: 30%;
+            }
+            .otherRooms {
+                justify-content: center;
+                .card {
+                    @include size(100%, auto);
+                    .info {
+                        height: 55px;
+                    }
+                    &:hover {
+                        img, .info, button {
+                            transform: none;
+                        }
+                    }
                 }
             }
         }
@@ -1070,7 +1420,36 @@ body {
             display: none;
         }
         .container {
-            @include size(90%, auto);
+                @include size(90%, auto);
+                table {
+                    thead {
+                        tr {
+                            th {
+                                width: auto;
+                            }
+                        }
+                    }
+                    tbody {
+                        tr {
+                            td {
+                                &.Hotel {
+                                    .hotel-content {
+                                        align-items: center;
+                                        flex-direction: column;
+                                    }
+                                }
+                                
+                                &.Room {
+                                    .room-content {
+                                        align-items: center;
+                                        flex-direction: column;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            
         }
     }
     #roomsPage {
@@ -1102,72 +1481,71 @@ body {
             }
         }
     }
+    #roomPage {
+    
+        .first {
+            @include size(90%, auto);
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            .left {
+                @include size(100%, auto);
+            }
+            .right {
+                @include size(100%, auto);
+                form .title span {
+                    width: 35%;
+                }
+            }
+        }
+        .second {
+            @include size(90%, auto);
+            flex-direction: column;
+            gap: 50px;
+            .title {
+                height: 48px;
+            }
+
+            .left {
+                width: 100%;
+                .title span {
+                    width: 35%;
+                }
+            }
+            .right {
+                width: 100%;
+                .title span {
+                    width: 35%;
+                }
+                .overview {
+                    .bottom {
+                        .divide {
+                            flex-direction: column-reverse;
+                            align-items: flex-start;
+                        }
+                    }
+                }
+            }
+        }
+        .third {
+            @include size(90%, auto);
+            .title span {
+                width: 30%;
+            }
+            .otherRooms {
+                justify-content: center;
+                .card {
+                    @include size(100%, auto);
+                    .info {
+                        height: 55px;
+                    }
+                    &:hover {
+                        img, .info, button {
+                            transform: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-
-// .card {
-//     @include size(356px, 283px);
-//     border: 1px solid var(--borders);
-//     overflow: hidden;
-//     cursor: pointer;
-//     img {
-//         @include size(100%, 80.5%);
-//         object-fit: cover;
-//         transition: transform 0.3s ease;
-//         transform: translateY(0);
-//     }
-//     .info {
-//         @include flex(space-between);
-//         height: 19.5%;
-//         transition: transform 0.3s ease;
-//         transform: translateY(0);
-//         p  {
-//             @include text(var(--text), 12px, 700);
-//             padding: 0 0 0 20px;
-//         }
-//         .price {
-//             height: 100%;
-//             @include flex(center);
-//             flex-direction: column;
-//             gap: 5px;
-//             border-left: 1px solid var(--borders);
-//             padding: 0 20px;
-//             background-color: #5fc9d721;
-//             h5 {
-//                 @include text(var(--accent), 18px, 700);
-//             }
-//             h6 {
-//                 @include text(var(--text2), 11px, 400)
-//             }
-//         }  
-//     }
-//     button {
-//         @include size(100%, 44px);
-//         border: 1px solid #3b97a3;
-//         border-radius: 5px;
-//         @include text(var(--bg), 14px, 600);
-//         background-color: var(--accent);
-//         cursor: pointer;
-//         transition: transform 0.3s ease;
-//         transform: translateY(0);
-//     }
-//     &:hover {
-//         img {
-//             transform: translateY(-100%);
-//         }
-//         .info, button {
-//             transform: translateY(-230px);
-//         }
-//     }
-// }
-
-// <div class="card">
-//     <img src="https://images.trvl-media.com/lodging/16000000/15840000/15835100/15835033/afdf2bac.jpg?impolicy=fcrop&w=1200&h=800&p=1&q=medium" alt="">
-//     <div class="info">
-//         <p>Premium Room</p>
-//         <div class="price">
-//             <h5>$ 199</h5>
-//             <h6>a night</h6>
-//         </div>
-//     </div>
-//     <button>BOOK NOW</button>
-// </div>

@@ -58,7 +58,7 @@ if(hotels) {
                                         <div class="info">
                                             <p>${obj.name}</p>
                                         </div>
-                                        <a href="rooms.html"><button>VIEW ROOMS</button></a>
+                                        <a href="rooms.html"><button onclick="saveHotelId(${obj.id})">VIEW ROOMS</button></a>
                                     </div>`
         })
     }).catch(e => {
@@ -85,7 +85,9 @@ async function getFavRooms(url) {
                                             <h6>a night</h6>
                                         </div>
                                     </div>
-                                    <button>BOOK NOW</button>
+                                    <a href="pages/room.html">
+                                        <button onclick="saveRoomId(${room.id})">BOOK NOW</button>
+                                    </a>
                                 </div>`
         }); 
     } catch (e) {
@@ -96,6 +98,12 @@ async function getFavRooms(url) {
 getFavRooms(API_URL);
 }
 
+function saveRoomId(id){
+    localStorage.setItem("RoomId", id)
+}
+function saveHotelId(id){
+    localStorage.setItem("HotelId", id)
+}
 function deleteBooking(id){
     console.log(id)
     fetch(`https://hotelbooking.stepprojects.ge/api/Booking/${id}`, {
@@ -238,7 +246,7 @@ if(roomsPage){
 
     apply.addEventListener("click", ()=>{
         if(dateIn === 0 || dateOut === 0) return;
-
+        localStorage.setItem("HotelId", 0)
         roomsContainer.innerHTML = '';
         
         let filtered = {
@@ -288,6 +296,8 @@ if(roomsPage){
         guests.value = "0"
         dateIn = 0;
         dateOut = 0;
+        localStorage.setItem("HotelId", 0);
+        getRoomAll();
     });
     function filterByRoomType(roomTypeId) {
         const date = new Date();
@@ -304,8 +314,9 @@ if(roomsPage){
 
         filterRoom(filterObj, true);
     }
+} else {
+    localStorage.setItem("HotelId", 0)
 }
-
 async function getRoomAll() {
     try {
         const response = await fetch("https://hotelbooking.stepprojects.ge/api/Rooms/GetAll");
@@ -313,17 +324,40 @@ async function getRoomAll() {
         
         roomsContainer.innerHTML = '';
         rooms.forEach(room => {
-            roomsContainer.innerHTML += `<div class="card">
-                                    <img src="${room.images[0].source}" alt="${room.name}">
-                                    <div class="info">
-                                        <p>${room.name}</p>
-                                        <div class="price">
-                                            <h5>€ ${room.pricePerNight}</h5>
-                                            <h6>a night</h6>
-                                        </div>
-                                    </div>
-                                    <button>BOOK NOW</button>
-                                </div>`
+            const hotel = localStorage.getItem("HotelId");
+            if(hotel === "0"){
+                roomsContainer.innerHTML += `
+                    <div class="card">
+                        <img src="${room.images[0].source}" alt="${room.name}">
+                        <div class="info">
+                            <p>${room.name}</p>
+                            <div class="price">
+                                <h5>€ ${room.pricePerNight}</h5>
+                                <h6>a night</h6>
+                            </div>
+                        </div>
+                        <a href="room.html">
+                            <button onclick="saveRoomId(${room.id})">BOOK NOW</button>
+                        </a>
+                    </div>`  
+            } else {
+                if(room.hotelId === Number(hotel)){
+                    roomsContainer.innerHTML += `
+                        <div class="card">
+                            <img src="${room.images[0].source}" alt="${room.name}">
+                            <div class="info">
+                                <p>${room.name}</p>
+                                <div class="price">
+                                    <h5>€ ${room.pricePerNight}</h5>
+                                    <h6>a night</h6>
+                                </div>
+                            </div>
+                            <a href="room.html">
+                                <button onclick="saveRoomId(${room.id})">BOOK NOW</button>
+                            </a>
+                        </div>`  
+                }
+            }
         }); 
     } catch (e) {
         console.log(e)
@@ -354,7 +388,9 @@ async function filterRoom(obj, doReset) {
                                                     <h6>a night</h6>
                                                 </div>
                                             </div>
-                                            <button>BOOK NOW</button>
+                                            <a href="room.html">
+                                                <button onclick="saveRoomId(${room.id})">BOOK NOW</button>
+                                            </a>
                                         </div>`;
         });
         
@@ -366,5 +402,217 @@ async function filterRoom(obj, doReset) {
 
         return [];
     }
+}
+const tabs = document.querySelectorAll(".tab")
+const tabsContent = [
+    `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum. In hendrerit risus arcu, in eleifend metus dapibus varius. Nulla dolor sapien, laoreet vel tincidunt non, egestas non justo. Phasellus et mattis lectus, et gravida urna.</p>
+    <div class="divide">
+        <p>Donec pretium sem non tincidunt iaculis. Nunc at pharetra eros, a varius leo. Mauris id hendrerit justo. Mauris egestas magna vitae nisi ultricies semper. Nam vitae suscipit magna. Nam et felis nulla. Ut nec magna tortor. Nulla dolor sapien, laoreet vel tincidunt non, egestas non justo.</p>
+        <img src="../resources/Images/restaurant-01.jpg" alt="">
+    </div>`,
+    `<p>Phasellus sodales justo felis, a vestibulum risus mattis vitae. Aliquam vitae varius elit, non facilisis massa. Vestibulum luctus diam mollis gravida bibendum. Aliquam mattis velit dolor, sit amet semper erat auctor vel. Integer auctor in dui ac vehicula. Integer fermentum nunc ut arcu feugiat, nec placerat nunc tincidunt. Pellentesque in massa eu augue placerat cursus sed quis magna.</p>`,
+    `<p>Aa vestibulum risus mattis vitae. Aliquam vitae varius elit, non facilisis massa. Vestibulum luctus diam mollis gravida bibendum. Aliquam mattis velit dolor, sit amet semper erat auctor vel. Integer auctor in dui ac vehicula. Integer fermentum nunc ut arcu feugiat, nec placerat nunc tincidunt. Pellentesque in massa eu augue placerat cursus sed quis magna.</p>`
+]
+const overviewContainer = document.querySelector("#overviewContainer")
+function overviewTab(tab){
+    tabs[tab%3].classList.remove("active")
+    tabs[(tab+1)%3].classList.remove("active")
+    tabs[(tab-1)%3].classList.add("active")
+    overviewContainer.innerHTML = tabsContent[tab-1]
+}
+const otherRooms = document.querySelector(".otherRooms");
+if(otherRooms){
+    const API_URL = 'https://hotelbooking.stepprojects.ge/api/Rooms/GetAll';
+    async function getOtherRooms(url) {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            const rooms = data.slice(0, 3);
+            otherRooms.innerHTML = "";
+            rooms.forEach(room => {
+                otherRooms.innerHTML += `<div class="card">
+                                        <img src="${room.images[0].source}" alt="${room.name}">
+                                        <div class="info">
+                                            <p>${room.name}</p>
+                                            <div class="price">
+                                                <h5>€ ${room.pricePerNight}</h5>
+                                                <h6>a night</h6>
+                                            </div>
+                                        </div>
+                                        <a href="room.html">
+                                            <button onclick="saveRoomId(${room.id})">BOOK NOW</button>
+                                        </a>
+                                    </div>`
+            }); 
+        } catch (e) {
+            console.log(e)
+            otherRooms.innerHTML = `<span>Failed to load other rooms. Please try again later.</span>`;
+        }
+    }
+    getOtherRooms(API_URL);
+}
+
+const roomBooking = document.querySelector("#roomBooking");
+if(roomBooking){
+    const body = document.querySelector("body")
+    body.style.backgroundColor = "var(--bg)";
+    const roomId = localStorage.getItem("RoomId");
+    fetch(`https://hotelbooking.stepprojects.ge/api/Rooms/GetRoom/${roomId}`)
+    .then(response => response.json())
+    .then(data =>{
+        const images = data.images
+        let buttons = ``
+        for(let i = 1; i < images.length; i++){
+            buttons+=`<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${i}"></button>`
+        }
+        let slides = ``
+        for(let i = 1; i < images.length; i++){
+            slides += `
+                <div class="carousel-item">
+                    <img src="${images[i].source}" class="d-block w-100" alt="...">
+                </div>
+            `
+        }
+        console.log(images)
+        roomBooking.innerHTML = `
+            <div class="left">
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        ${buttons}
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img src="${images[0].source }" class="d-block w-100" alt="...">
+                        </div>
+                        ${slides}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    </div>
+            </div>
+            <div class="right">
+                <form action="">
+                    <div class="title">
+                        <span></span>
+                        <h2>Reservation</h2>
+                        <span></span>
+                    </div>
+                    <div class="priceTag">
+                        <p>${data.name} <span class="price">€ ${data.pricePerNight},- </span><span class="night">a night</span></p>
+                    </div>
+                    <label for="Checkin">
+                        Check-in
+                        <input type="date" name="Checkin" id="Checkin" required>
+                    </label>
+                    <label for="Checkout">
+                        Check-Out
+                        <input type="date" name="Checkout" id="CheckOut" required>
+                    </label>
+                    <label for="name">
+                        Customer Name
+                        <input type="text" name="name" id="name" required placeholder="Please enter your name">
+                    </label>
+                    <label for="tel">
+                        Customer Tel:Phone
+                        <input type="text" name="tel" id="tel" required placeholder="Please enter your phone number">
+                    </label>
+                    <div class="totalPrice hidden">
+                        <p>Total Price:  199 <span class="price">€</span></p>
+                    </div>
+                    <button type="submit" id="book">BOOK NOW</button>
+                </form>
+            </div> 
+        `;
+        
+        setTimeout(() => {
+            const Checkin = document.querySelector("#Checkin");
+            const Checkout = document.querySelector("#CheckOut");
+            const name = document.querySelector("#name");
+            const tel = document.querySelector("#tel");
+            const totalPrice = document.querySelector(".totalPrice");
+            const form = document.querySelector("form")
+            
+            Checkin.addEventListener("change", ()=>{
+                if(Checkout.value){
+                    totalPrice.classList.remove("hidden");
+                    const checkinDate = new Date(Checkin.value);
+                    const checkoutDate = new Date(Checkout.value);
+                    const diffTime = checkoutDate - checkinDate;  
+                    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                    totalPrice.innerHTML = `<p>Total Price:   ${diffDays*data.pricePerNight} <span class="price">€</span></p>`;
+                    
+                }   
+            });
+            
+            Checkout.addEventListener("change", ()=>{
+                if(Checkin.value){
+                    totalPrice.classList.remove("hidden");
+                    const checkinDate = new Date(Checkin.value);
+                    const checkoutDate = new Date(Checkout.value);
+                    const diffTime = checkoutDate - checkinDate;  
+                    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                    totalPrice.innerHTML = `<p>Total Price:   ${diffDays*data.pricePerNight} <span class="price">€</span></p>`;
+                }
+            });
+            form.addEventListener("submit", (event)=>{
+                event.preventDefault();
+                const checkinDate = new Date(Checkin.value);
+                const checkoutDate = new Date(Checkout.value);
+                const diffTime = checkoutDate - checkinDate;  
+                const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                const obj = {
+                    "id": 0,
+                    "roomID": data.id,
+                    "checkInDate": Checkin.value + "T00:00:00",
+                    "checkOutDate": Checkout.value + "T00:00:00",
+                    "totalPrice": diffDays*data.pricePerNight,
+                    "isConfirmed": true,
+                    "customerName": name.value,
+                    "customerId": "string",
+                    "customerPhone": tel.value
+                }
+                fetch('https://hotelbooking.stepprojects.ge/api/Booking', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(obj),
+                }).then(response =>{
+                    if(response.ok){
+                        Swal.fire({
+                            title: "Room Booked",
+                            text: "You successfully booked a room.",
+                            icon: "success"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Room wasn't booked",
+                            text: "failled with booking a room, try again later.",
+                            icon: "error"
+                        });
+                    }
+                }).catch((error)=>{
+                    console.log(error)
+                })
+                Checkin.value = ""
+                Checkout.value = ""
+                name.value = ""
+                tel.value = ""
+            })
+            
+        }, 0);
+ 
+    })
+    .catch(error => {
+        console.log(error)
+        roomBooking.innerHTML = '<span>Failed to load the room. Please try again later.</span>'
+    });
 }
 

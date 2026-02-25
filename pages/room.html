@@ -3,9 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Hotel Booking</title>
 </head>
 <body>
-    
+    <header>
+        <div class="wraper">
+            <div class="left">
+                <a href="../index.html"><img src="../resources/Images/logos.svg" alt="logo"></a>
+                <nav>
+                    <a href="../index.html" data-language="navHome"></a>
+                    <a href="rooms.html" data-language="navRooms"></a>
+                    <a href="hotels.html" data-language="navHotels"></a>
+                    <a href="bookedRooms.html" data-language="navBookedRooms"></a>
+                </nav>
+            </div>
+            <div class="right">
+                <button id="themeChangeBtn"></button>
+                <select name="language" id="lang">
+                    <option value="en">English</option>
+                    <option value="ka">ქართული</option>
+                    <option value="ru">Русский</option>
+                    <option value="sp">Español</option>
+                </select>
+                <div class="burgerMenu"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18L20 18" stroke="" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L20 12" stroke="" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="" stroke-width="2" stroke-linecap="round"></path> </g></svg></div>
+            </div>
+        </div>
+        <nav class="burgerNav">
+            <a href="index.html" data-language="navHome" class="active"></a>
+            <a href="pages/rooms.html" data-language="navRooms"></a>
+            <a href="pages/hotels.html" data-language="navHotels"></a>
+            <a href="pages/bookedRooms.html" data-language="navBookedRooms"></a>
+        </nav>
+    </header>
+    <main id="roomPage">
+        <section class="first" id="roomBooking">
+            <span>loading...</span>
+        </section>
+        <section class="second">
+            <div class="left">
+                <div class="title">
+                    <span></span>
+                    <h2>Room Details</h2>
+                    <span></span>
+                </div>
+                <div class="table">
+                    <h5>Table overview</h5>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Double Bed</td>
+                                <td>Free Internet</td>
+                                <td>Free Newspaper</td>
+                            </tr>
+                            <tr>
+                                <td>60 square meter</td>
+                                <td>Beach view</td>
+                                <td>2 persons</td>
+                            </tr>
+                            <tr>
+                                <td>Double Bed</td>
+                                <td>Free Internet</td>
+                                <td>Breakfast included</td>
+                            </tr>
+                            <tr>
+                                <td>Private Balcony</td>
+                                <td>Flat Screen TV</td>
+                                <td>Jacuzzi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula nibh, cursus id euismod non, scelerisque nec nibh. Nam semper, ligula a rhoncus fermentum, libero lacus vulputate felis, id auctor mauris urna quis diam.</p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="title">
+                    <span></span>
+                    <h2>Overview</h2>
+                    <span></span>
+                </div>
+                <div class="overview">
+                    <div class="top">
+                        <div onclick="overviewTab(1)" class="active tab">Overview</div>
+                        <div onclick="overviewTab(2)" class="tab">Facilities</div>
+                        <div onclick="overviewTab(3)" class="tab">Extra</div>
+                    </div>
+                    <div class="bottom" id="overviewContainer">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum. In hendrerit risus arcu, in eleifend metus dapibus varius. Nulla dolor sapien, laoreet vel tincidunt non, egestas non justo. Phasellus et mattis lectus, et gravida urna.</p>
+                        <div class="divide">
+                            <p>Donec pretium sem non tincidunt iaculis. Nunc at pharetra eros, a varius leo. Mauris id hendrerit justo. Mauris egestas magna vitae nisi ultricies semper. Nam vitae suscipit magna. Nam et felis nulla. Ut nec magna tortor. Nulla dolor sapien, laoreet vel tincidunt non, egestas non justo.</p>
+                            <img src="../resources/Images/restaurant-01.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="third">
+            <div class="title">
+                <span></span>
+                <h2>Other rooms</h2>
+                <span></span>
+            </div>
+            <div class="otherRooms">
+                <span>loading...</span>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="wraper">
+            <p>© 2023 IT Academy Step All; Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="../js/languages.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
