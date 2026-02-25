@@ -88,6 +88,10 @@ header .wraper .right {
   justify-content: center;
   gap: 20px;
 }
+header .wraper .right a svg {
+  width: 28px;
+  height: 28px;
+}
 header .wraper .right button {
   width: 28px;
   height: 28px;
@@ -1641,6 +1645,91 @@ body {
   text-decoration: none;
 }
 
+#authPage {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#authPage .auth-container {
+  max-width: 520px;
+  margin: 140px auto 60px;
+  padding: 26px;
+  background: var(--bg);
+  border-radius: 16px;
+  border: 1px solid var(--borders);
+  box-shadow: 0 10px 30px rgba(117, 197, 207, 0.15);
+}
+#authPage .auth-container .form {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+#authPage .auth-container .form h2 {
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+#authPage .auth-container .form input, #authPage .auth-container .form select {
+  padding: 12px 14px;
+  border: 1px solid var(--borders);
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  background: var(--bg);
+}
+#authPage .auth-container .form input:focus, #authPage .auth-container .form select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(117, 197, 207, 0.15);
+}
+#authPage .auth-container .form button {
+  margin-top: 6px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--btn);
+  background: var(--accent);
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+#authPage .auth-container .form button:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+#authPage .auth-container .form p {
+  text-align: center;
+  color: var(--text2);
+  margin-top: 6px;
+}
+#authPage .auth-container .active {
+  display: flex;
+}
+#authPage .auth-container .toggle {
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 700;
+}
+#authPage .auth-container .toggle:hover {
+  text-decoration: underline;
+}
+#authPage .auth-container .two-col {
+  display: flex;
+  gap: 10px;
+}
+#authPage .auth-container .two-col > * {
+  flex: 1;
+}
+#authPage .auth-container .phone-row {
+  display: flex;
+  gap: 10px;
+}
+#authPage .auth-container .phone-row select {
+  width: 160px;
+}
+
 @media screen and (min-width: 901px) and (max-width: 1200px) {
   #homePage .favoriteRooms, #homePage .uspSection {
     width: 90%;
@@ -2026,5 +2115,17 @@ body {
   }
   #roomPage .third .otherRooms .card:hover img, #roomPage .third .otherRooms .card:hover .info, #roomPage .third .otherRooms .card:hover button {
     transform: none;
+  }
+  #authPage .auth-container {
+    width: 90%;
+  }
+  #authPage .auth-container .two-col {
+    flex-direction: column;
+  }
+  #authPage .auth-container .phone-row {
+    flex-direction: column;
+  }
+  #authPage .auth-container .phone-row select {
+    width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */

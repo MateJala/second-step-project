@@ -39,6 +39,9 @@ header {
         .right {
             @include flex(center);
             gap: 20px;
+            a svg {
+                @include size(28px, 28px);
+            }
             button {
                 @include size(28px, 28px);
                 border: none;

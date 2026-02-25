@@ -1068,6 +1068,92 @@ body {
         }
     }
 }
+#authPage {
+    @include size(100%, auto);
+    @include flex(center);
+    .auth-container {
+        max-width: 520px;
+        margin: 140px auto 60px;
+        padding: 26px;
+        background: var(--bg);
+        border-radius: 16px;
+        border: 1px solid var(--borders);
+        box-shadow: 0 10px 30px rgba(117, 197, 207, 0.15);
+        
+        .form {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            h2 {
+                text-align: center;
+                color: var(--text);
+                margin-bottom: 10px;
+            }
+            input, select {
+                padding: 12px 14px;
+                border: 1px solid var(--borders);
+                border-radius: 10px;
+                font-size: 15px;
+                outline: none;
+                background: var(--bg);
+                &:focus {
+                    border-color: var(--accent);
+                    box-shadow: 0 0 0 4px rgba(117, 197, 207, 0.15);
+                    
+                }
+            }
+            button {
+                margin-top: 6px;
+                padding: 12px 14px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 15px;
+                color: var(--btn);
+                background: var(--accent);
+                transition: transform 0.15s ease, filter 0.2s ease;
+                &:hover {
+                    filter: brightness(0.95);
+                    transform: translateY(-1px);
+                }
+            }
+            p {
+                text-align: center;
+                color: var(--text2);
+                margin-top: 6px;
+            }
+        }
+        .active {
+            display: flex;
+        }
+        .toggle {
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 700;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .two-col {
+        display: flex;
+        gap: 10px;
+        }
+
+        .two-col>* {
+        flex: 1;
+        }
+
+        .phone-row {
+            display: flex;
+            gap: 10px;
+            select {
+                width: 160px;
+            }
+        }
+    }
+}
 
 @media screen and (min-width: 901px) and (max-width: 1200px){
     #homePage {
@@ -1355,6 +1441,7 @@ body {
             }
         }
     }
+    
 }
 @media screen and (min-width: 300px) and (max-width: 600px){
     #homePage{
@@ -1544,6 +1631,20 @@ body {
                             transform: none;
                         }
                     }
+                }
+            }
+        }
+    }
+    #authPage {
+        .auth-container {
+            width: 90%;
+            .two-col {
+            flex-direction: column;
+            }
+            .phone-row {
+                flex-direction: column;
+                select {
+                    width: 100%;
                 }
             }
         }

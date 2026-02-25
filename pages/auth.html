@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <link rel="stylesheet" href="../styles/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div class="wraper">
+        <div class="left">
+            <a href="../index.html"><img src="../resources/Images/logos.svg" alt="logo"></a>
+            <nav>
+                <a href="../index.html" data-language="navHome"></a>
+                <a href="rooms.html" data-language="navRooms"></a>
+                <a href="hotels.html" data-language="navHotels"></a>
+                <a href="bookedRooms.html" data-language="navBookedRooms"></a>
+            </nav>
+        </div>
+        <div class="right">
+            <a href="auth.html"><svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#75c5cf;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><circle class="cls-1" cx="12" cy="7.25" r="5.73"></circle><path class="cls-1" d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05"></path></g></svg></a>
+            <button id="themeChangeBtn"></button>
+            <select name="language" id="lang">
+                <option value="en">English</option>
+                <option value="ka">ქართული</option>
+                <option value="ru">Русский</option>
+                <option value="sp">Español</option>
+            </select>
+            <div class="burgerMenu"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18L20 18" stroke="" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L20 12" stroke="" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="" stroke-width="2" stroke-linecap="round"></path> </g></svg></div>
+        </div>
+    </div>
+    <nav class="burgerNav">
+        <a href="../index.html" data-language="navHome"></a>
+        <a href="rooms.html" data-language="navRooms"></a>
+        <a href="hotels.html" data-language="navHotels"></a>
+        <a href="bookedRooms.html" data-language="navBookedRooms" class="active"></a>
+    </nav>
+  </header>
+  <main id="authPage">
+    <div class="auth-container">
+
+      <form id="loginForm" class="form active">
+        <h2>Welcome Back</h2>
+
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+
+        <button type="submit">Login</button>
+
+        <p>Don't have an account? <span class="toggle" id="showRegister">Register</span></p>
+      </form>
+
+
+      <form id="registerForm" class="form">
+        <h2>Create Account</h2>
+
+        <div class="two-col">
+          <input type="text" id="regFirstName" placeholder="First Name" required>
+          <input type="text" id="regLastName" placeholder="Last Name" required>
+        </div>
+
+        <input type="number" id="regAge" placeholder="Age" min="1" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+
+        <div class="phone-row">
+          <select id="countryCode">
+            <option value="+995">+995 (GEO)</option>
+            <option value="+1">+1 (USA)</option>
+            <option value="+44">+44 (UK)</option>
+          </select>
+          <input type="tel" id="regPhone" placeholder="Phone Number" required>
+        </div>
+
+        <input type="text" id="regAddress" placeholder="Address" required>
+
+        <div class="two-col">
+          <input type="text" id="regZipcode" placeholder="Zipcode" required>
+          <select id="regGender" required>
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+            <option value="OTHER">OTHER</option>
+          </select>
+        </div>
+
+        <input type="url" id="regAvatar" placeholder="Avatar URL (optional)">
+
+        <input type="password" id="regPassword" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+        <button type="submit">Create Account</button>
+
+        <p>Already have an account? <span class="toggle" id="showLogin">Login</span></p>
+      </form>
+
+    </div>
+  </main>
+  <footer>
+      <div class="wraper">
+          <p>© 2023 IT Academy Step All; Rights Reserved</p>
+      </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/languages.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+</body>
+
+</html>
