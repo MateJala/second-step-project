@@ -42,7 +42,7 @@ if(types) {
     const roomtypeAPI = 'https://hotelbooking.stepprojects.ge/api/Rooms/GetRoomTypes';
     fetch(roomtypeAPI).then(response => response.json()).then(array => {
         array.forEach(type => {
-            types.innerHTML += `<div class="roomType">${type.name}</div>`
+            types.innerHTML += `<div class="roomType" onclick="filterByRoomType(${type.id})">${type.name}</div>`
         });
     });
 }
@@ -187,10 +187,11 @@ if(bookedRooms) {
     getBookedRooms("https://hotelbooking.stepprojects.ge/api/Booking");
 }
 
-
+const roomsContainer = document.querySelector(".roomsContainer");
 const roomsPage = document.querySelector("#roomsPage");
 if(roomsPage){
     getRoomAll();
+
     window.onload = function () {
         slideOne();
         slideTwo();
@@ -223,12 +224,88 @@ if(roomsPage){
     percent2 = (sliderTwo.value / sliderMaxValue) * 100;
     sliderTrack.style.background = `linear-gradient(to right, var(--borders) ${percent1}% , var(--accent) ${percent1}% , var(--accent) ${percent2}%, var(--borders) ${percent2}%)`;
     }
-
+    const roomType = document.querySelector("#roomType");
+    const Checkin = document.querySelector("#Checkin");
+    const Checkout = document.querySelector("#Checkout");
+    const guests = document.querySelector("#guest");
+    const apply = document.querySelector("#APPLY");
+    const reset = document.querySelector("#RESET");
     
+    let dateIn = 0;
+    let dateOut = 0;
+    Checkin.addEventListener("change", ()=>{dateIn++});
+    Checkout.addEventListener("change", ()=>{dateOut++});
+
+    apply.addEventListener("click", ()=>{
+        if(dateIn === 0 || dateOut === 0) return;
+
+        roomsContainer.innerHTML = '';
+        
+        let filtered = {
+            "roomTypeId": Number(roomType.value),
+            "priceFrom": Number(valOne.value),
+            "priceTo": Number(valTwo.value),
+            "maximumGuests": Number(guests.value),
+            "checkIn": Checkin.value + "T00:00:00",
+            "checkOut": Checkout.value + "T00:00:00"
+        };
+        
+        if(roomType.value === "0") {
+            Promise.all([
+                filterRoom({...filtered, roomTypeId: 1}, false),
+                filterRoom({...filtered, roomTypeId: 2}, false),
+                filterRoom({...filtered, roomTypeId: 3}, false)
+            ]).then(allRooms => {
+                const combinedRooms = allRooms.flat();
+                roomsContainer.innerHTML = '';
+                combinedRooms.forEach(room => {
+                    roomsContainer.innerHTML += `<div class="card">
+                                                    <img src="${room.images[0].source}" alt="${room.name}">
+                                                    <div class="info">
+                                                        <p>${room.name}</p>
+                                                        <div class="price">
+                                                            <h5>€ ${room.pricePerNight}</h5>
+                                                            <h6>a night</h6>
+                                                        </div>
+                                                    </div>
+                                                    <button>BOOK NOW</button>
+                                                </div>`;
+                });
+            });
+        } else {
+            filterRoom(filtered, true);
+        }
+    });
+    reset.addEventListener("click", ()=>{
+        sliderOne.value = 0
+        sliderTwo.value = 1000
+        fillColor();
+        valOne.value = "0"
+        valTwo.value = "1000"
+        roomType.value = "0"
+        Checkin.value = ""
+        Checkout.value = ""
+        guests.value = "0"
+        dateIn = 0;
+        dateOut = 0;
+    });
+    function filterByRoomType(roomTypeId) {
+        const date = new Date();
+        const formattedDate = date.toISOString().split('T')[0] + 'T00:00:00';
+        
+        let filterObj = {
+            "roomTypeId": roomTypeId,
+            "priceFrom": 0,
+            "priceTo": 1000,
+            "maximumGuests": 0,
+            "checkIn": formattedDate,
+            "checkOut": formattedDate
+        };
+
+        filterRoom(filterObj, true);
+    }
 }
 
-
-const roomsContainer = document.querySelector(".roomsContainer");
 async function getRoomAll() {
     try {
         const response = await fetch("https://hotelbooking.stepprojects.ge/api/Rooms/GetAll");
@@ -253,3 +330,41 @@ async function getRoomAll() {
         roomsContainer.innerHTML = `<span>Failed to load favorite rooms. Please try again later.</span>`;
     }
 }
+async function filterRoom(obj, doReset) {
+    try {
+        const response = await fetch("https://hotelbooking.stepprojects.ge/api/Rooms/GetFiltered", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj),
+        });
+        const data = await response.json();
+        let rooms = data;
+        if (doReset) {
+            roomsContainer.innerHTML = '';
+        }
+        rooms.forEach(room => {
+            roomsContainer.innerHTML += `<div class="card">
+                                            <img src="${room.images[0].source}" alt="${room.name}">
+                                            <div class="info">
+                                                <p>${room.name}</p>
+                                                <div class="price">
+                                                    <h5>€ ${room.pricePerNight}</h5>
+                                                    <h6>a night</h6>
+                                                </div>
+                                            </div>
+                                            <button>BOOK NOW</button>
+                                        </div>`;
+        });
+        
+        return rooms;
+        
+    } catch (e) {
+        console.log('Filter error:', e);
+        roomsContainer.innerHTML = `<span>Failed to load rooms. Please try again later.</span>`;
+
+        return [];
+    }
+}
+
